@@ -1,0 +1,36 @@
+---
+import LinkedinIcon from "../components/icons/LinkedinIcon.astro";
+import GithubIcon from "../components/icons/GithubIcon.astro";
+---
+
+<section class="bg-velvet m-8 rounded-3xl h-[450px] items-center flex flex-row after:bg-[url('/public/images/backgrounds/primary-pattern.svg')]">
+    <div class="max-w-screen-lg mx-auto flex flex-row">
+        <div class="basis-2/3 flex flex-col gap-12 pr-[6em]">
+            <div class="flex flex-col gap-7">
+                <h1 class="text-velvet-400 font-black font-title text-6xl">Info</h1>
+                <p class="text-velvet-100 text-3xl">
+                    Entusiasta del código abierto, apasionado por el diseño de
+                    interfaces y la accesibilidad en la web.
+                </p>
+            </div>
+            <div class="flex flex-row gap-7 items-center text-velvet-100">
+                <picture><img class="rounded-full" width="75" height="75" src="/public/images/autor-photo.png" alt="Foto de Michael Barrera"></picture>
+                <div class="flex flex-row items-center">
+                    <div class="flex flex-col gap-2 pr-5">
+                        <h2 class="text-xl font-bold text-velvet-50">Michael Barrera</h2>
+                        <p>Desarrollador Web</p>
+                    </div>
+                    <div class="flex flex-col gap-3 border-l pl-5 border-velvet-100/25">
+                        <p>Sígueme en:</p>
+                        <ul class="flex flex-row gap-5">
+                            <li class="flex flex-row gap-2"><GithubIcon /><a href="#">Github</a></li>
+                            <li class="flex flex-row gap-2"><LinkedinIcon /><a href="#">Linkedin</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="basis-1/3">
+        </div>
+    </div>
+</section>
