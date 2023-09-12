@@ -1,8 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Content from "../layouts/containers/Content.astro";
+
 import Hero from "../components/HeroPrimary.astro";
+import ProyectCard from "../components/cards/ProyectCard.astro";
+
 ---
 
-<Layout title="Home">
+<Layout title="Información: Michael Barrera - Web Developer">
     <Hero />
+    <Content>
+        <ProyectCard />
+    </Content>
 </Layout>
