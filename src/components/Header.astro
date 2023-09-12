@@ -1,0 +1,20 @@
+---
+interface Props {
+    logoUrl: string;
+}
+
+const { logoUrl } = Astro.props;
+---
+
+<header class="bg-velvet relative w-full">
+  <section class="container flex flex-row items-center justify-between py-2 mx-auto max-w-screen-xl">
+    <picture>
+      <img class="inline" width="50" height="50" src={logoUrl} alt="">
+    </picture>
+    <ul class="flex flex-row gap-7">
+      <li><a class="font-medium text-featureText" href="">Información</a></li>
+      <li><a class="font-regular text-featureText" href="">Proyectos</a></li>
+      <li><a class="font-regular text-featureText" href="">Blog</a></li>
+    </ul>
+  </section>
+</header>
