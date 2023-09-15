@@ -2,9 +2,9 @@
 interface Props {
   logoUrl: string;
   pageName: string;
+  links: string[];
 }
-
-const { logoUrl, pageName } = Astro.props;
+const { logoUrl, pageName, links } = Astro.props;
 ---
 
 <header class="bg-pink relative w-full">
@@ -12,30 +12,28 @@ const { logoUrl, pageName } = Astro.props;
     class="container flex flex-row items-center justify-between py-4 mx-auto max-w-screen-xl px-6"
   >
     <picture class="flex flex-row items-center gap-3">
-      <img
-        class="inline"
-        width="40"
-        height="40"
-        src={logoUrl}
-        alt="Michael Barrera Emblema"
-      />
+      <a title="Ir al inicio" href="/">
+        <img
+          class="inline"
+          width="40"
+          height="40"
+          src={logoUrl}
+          alt="Michael Barrera Emblema"
+        />
+      </a>
       <span>/</span>
       <p class="text-base font-medium">{pageName}</p>
     </picture>
-    <ul class="flex flex-row gap-7">
-      <li>
-        <a class="font-bold text-pink-50 hover:text-pink-50" href=""
-          >Información</a
-        >
-      </li>
-      <li>
-        <a class="font-medium text-pink-100 hover:text-pink-50" href=""
-          >Proyectos</a
-        >
-      </li>
-      <li>
-        <a class="font-medium text-pink-100 hover:text-pink-50" href="">Blog</a>
-      </li>
-    </ul>
+    <nav>
+      <ul class="flex flex-row gap-7">
+        {
+          links.map((link) => (
+            <li class="font-medium text-pink-100 hover:text-pink-50">
+              <a title=`Ir a ${link}` href="#">{link}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </section>
 </header>

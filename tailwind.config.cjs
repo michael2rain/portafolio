@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
@@ -32,8 +33,8 @@ module.exports = {
 		},
 		extend: {
 			fontFamily: {
-				'sans': ['IBM Plex Sans', 'ui-sans-serif', 'system-ui', '-apple-system'],
-				'title': ['Dela Gothic One', 'ui-sans-serif', 'system-ui', '-apple-system']
+				'sans': ['IBM Plex Sans', defaultTheme.fontFamily.sans],
+				'title': ['Dela Gothic One', defaultTheme.fontFamily.sans],
 			},
 			boxShadow: {
 				'3d': '0px -4px 0px 0px rgba(14, 1, 7, 0.50) inset, 0px 3px 0px 0px rgba(128, 14, 62, 0.25) inset',

@@ -13,11 +13,15 @@ import PillLink from "../components/Buttons/PillLinks.astro";
     pageTitle="Información"
     pageDescription="Información de Michael Barrera; Acerca de, proyectos y últimos post en el blog."
 >
-    <Hero />
+    <Hero
+        heading="Info"
+        description="Entusiasta del código abierto, apasionado por el diseño de interfaces y la accesibilidad en la web."
+        author
+    />
     <Content>
         <section class="flex flex-col gap-9">
             <div class="w-full flex flex-row justify-between">
-                <h2 class="text-3xl text-pink-50 font-semibold">
+                <h2 class="text-3xl text-pink-50 font-medium">
                     Proyectos recientes:
                 </h2>
                 <PillLink />

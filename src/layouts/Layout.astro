@@ -6,6 +6,12 @@ interface Props {
 }
 const { title, pageTitle, pageDescription } = Astro.props;
 
+import "@fontsource/ibm-plex-sans/300.css";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/dela-gothic-one";
+
 import Header from "../components/Header.astro";
 ---
 
@@ -19,19 +25,13 @@ import Header from "../components/Header.astro";
         <meta name="description" content={pageDescription} />
     </head>
     <body class="bg-velvet text-velvet-50">
-        <Header logoUrl="/favicon.png" pageName={pageTitle} />
+        <Header
+            logoUrl="/favicon.png"
+            pageName={pageTitle}
+            links={["Información", "Proyectos", "Blog"]}
+        />
         <main class="relative w-full">
             <slot />
         </main>
     </body>
 </html>
-
-<style is:global>
-    @font-face {
-        font-family: "Dela Gothic One";
-        src: url("/fonts/DelaGothicOne-Regular.woff2") format("woff2");
-        font-weight: normal;
-        font-style: normal;
-        font-display: auto;
-    }
-</style>
