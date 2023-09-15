@@ -1,20 +1,41 @@
 ---
 interface Props {
-    logoUrl: string;
+  logoUrl: string;
+  pageName: string;
 }
 
-const { logoUrl } = Astro.props;
+const { logoUrl, pageName } = Astro.props;
 ---
 
-<header class="bg-velvet relative w-full">
-  <section class="container flex flex-row items-center justify-between py-2 mx-auto max-w-screen-xl px-6">
-    <picture>
-      <img class="inline" width="50" height="50" src={logoUrl} alt="">
+<header class="bg-pink relative w-full">
+  <section
+    class="container flex flex-row items-center justify-between py-4 mx-auto max-w-screen-xl px-6"
+  >
+    <picture class="flex flex-row items-center gap-3">
+      <img
+        class="inline"
+        width="40"
+        height="40"
+        src={logoUrl}
+        alt="Michael Barrera Emblema"
+      />
+      <span>/</span>
+      <p class="text-base font-medium">{pageName}</p>
     </picture>
     <ul class="flex flex-row gap-7">
-      <li><a class="font-medium text-velvet-100" href="">Información</a></li>
-      <li><a class="font-regular text-velvet-100" href="">Proyectos</a></li>
-      <li><a class="font-regular text-velvet-100" href="">Blog</a></li>
+      <li>
+        <a class="font-bold text-pink-50 hover:text-pink-50" href=""
+          >Información</a
+        >
+      </li>
+      <li>
+        <a class="font-medium text-pink-100 hover:text-pink-50" href=""
+          >Proyectos</a
+        >
+      </li>
+      <li>
+        <a class="font-medium text-pink-100 hover:text-pink-50" href="">Blog</a>
+      </li>
     </ul>
   </section>
 </header>

@@ -3,13 +3,39 @@ import Layout from "../layouts/Layout.astro";
 import Content from "../layouts/containers/Content.astro";
 
 import Hero from "../components/HeroPrimary.astro";
-import ProyectCard from "../components/cards/ProyectCard.astro";
+import ProyectCard from "../components/Cards/Proyecto.astro";
 
+import PillLink from "../components/Buttons/PillLinks.astro";
 ---
 
-<Layout title="Información: Michael Barrera - Web Developer">
+<Layout
+    title="Información - Michael Barrera Developer"
+    pageTitle="Información"
+    pageDescription="Información de Michael Barrera; Acerca de, proyectos y últimos post en el blog."
+>
     <Hero />
     <Content>
-        <ProyectCard />
+        <section class="flex flex-col gap-9">
+            <div class="w-full flex flex-row justify-between">
+                <h2 class="text-3xl text-pink-50 font-semibold">
+                    Proyectos recientes:
+                </h2>
+                <PillLink />
+            </div>
+            <div class="grid grid-cols-2 gap-9">
+                <ProyectCard
+                    proyectCat="WordPress Plugin"
+                    proyectName="WooCommerce AdCombo Integration Plugin"
+                    proyectDesc="Integración entre WooCommerce y la API de AdCombo, para crear pedidos y enviar la información del cliente en tiempo real."
+                    proyectLabels={["PHP", "Woocommerce", "WordPress"]}
+                />
+                <ProyectCard
+                    proyectCat="E-commerce"
+                    proyectName="Naturista Express"
+                    proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
+                    proyectLabels={["PHP", "JavaScript", "Woocommerce"]}
+                />
+            </div>
+        </section>
     </Content>
 </Layout>
