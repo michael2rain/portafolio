@@ -5,8 +5,19 @@ interface Props {
     linkTitle: string;
 }
 const { text, link, linkTitle } = Astro.props;
+const currentPage = Astro.url.pathname;
 ---
 
-<li class="font-medium text-pink-100 hover:text-pink-50">
+<li
+    class:list={[
+        "font-medium",
+        link == currentPage
+            ? "text-pink-50 underline underline-offset-3"
+            : "text-pink-200",
+        "hover:text-pink-50",
+        "hover:underline",
+        "underline-offset-2",
+    ]}
+>
     <a title=`Ir a ${linkTitle}` href={link}>{text}</a>
 </li>
