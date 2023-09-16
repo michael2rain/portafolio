@@ -6,8 +6,8 @@ interface Props {
 }
 const { heading, description, author } = Astro.props;
 
-import LinkedinIcon from "../components/Icons/LinkedinIcon.astro";
-import GithubIcon from "../components/Icons/GithubIcon.astro";
+import LinkedinIcon from "./icons/linkedin-icon.astro";
+import GithubIcon from "./icons/github-icon.astro";
 ---
 
 <section
@@ -48,7 +48,11 @@ import GithubIcon from "../components/Icons/GithubIcon.astro";
                                     <li class="flex flex-row gap-2">
                                         <>
                                             <GithubIcon />
-                                            <a class="hover:underline" href="#">
+                                            <a
+                                                class="hover:underline"
+                                                href="#"
+                                                title="Ir al perfil de GitHub"
+                                            >
                                                 Github
                                             </a>
                                         </>
@@ -56,7 +60,11 @@ import GithubIcon from "../components/Icons/GithubIcon.astro";
                                     <li class="flex flex-row gap-2">
                                         <>
                                             <LinkedinIcon />
-                                            <a class="hover:underline" href="#">
+                                            <a
+                                                class="hover:underline"
+                                                href="#"
+                                                title="Ir al perfil de Linkedin"
+                                            >
                                                 Linkedin
                                             </a>
                                         </>

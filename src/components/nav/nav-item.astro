@@ -1,0 +1,12 @@
+---
+interface Props {
+    text: string;
+    link: string;
+    linkTitle: string;
+}
+const { text, link, linkTitle } = Astro.props;
+---
+
+<li class="font-medium text-pink-100 hover:text-pink-50">
+    <a title=`Ir a ${linkTitle}` href={link}>{text}</a>
+</li>

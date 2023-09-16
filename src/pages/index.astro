@@ -1,11 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Content from "../layouts/containers/Content.astro";
+import Layout from "../layouts/layout.astro";
+import Content from "../layouts/containers/content.astro";
 
-import Hero from "../components/HeroPrimary.astro";
-import ProyectCard from "../components/Cards/Proyecto.astro";
+import Hero from "../components/hero-primary.astro";
+import ProyectCard from "../components/cards/proyecto.astro";
 
-import PillLink from "../components/Buttons/PillLinks.astro";
+import PillLink from "../components/buttons/pill-link.astro";
 ---
 
 <Layout
@@ -24,7 +24,10 @@ import PillLink from "../components/Buttons/PillLinks.astro";
                 <h2 class="text-3xl text-pink-50 font-medium">
                     Proyectos recientes:
                 </h2>
-                <PillLink />
+                <PillLink
+                    text="Ver todos"
+                    linkTitle="Ver todos los proyectos"
+                />
             </div>
             <div class="grid grid-cols-2 gap-9">
                 <ProyectCard

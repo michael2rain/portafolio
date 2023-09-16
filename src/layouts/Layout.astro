@@ -12,7 +12,7 @@ import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/600.css";
 import "@fontsource/dela-gothic-one";
 
-import Header from "../components/Header.astro";
+import Header from "../components/header.astro";
 ---
 
 <html lang="es">
@@ -25,11 +25,7 @@ import Header from "../components/Header.astro";
         <meta name="description" content={pageDescription} />
     </head>
     <body class="bg-velvet text-velvet-50">
-        <Header
-            logoUrl="/favicon.png"
-            pageName={pageTitle}
-            links={["Información", "Proyectos", "Blog"]}
-        />
+        <Header logoUrl="/favicon.png" pageName={pageTitle} />
         <main class="relative w-full">
             <slot />
         </main>

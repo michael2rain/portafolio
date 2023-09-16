@@ -2,38 +2,33 @@
 interface Props {
   logoUrl: string;
   pageName: string;
-  links: string[];
 }
-const { logoUrl, pageName, links } = Astro.props;
+const { logoUrl, pageName } = Astro.props;
+
+import NavItem from "../components/nav/nav-item.astro";
 ---
 
 <header class="bg-pink relative w-full">
-  <section
+  <div
     class="container flex flex-row items-center justify-between py-4 mx-auto max-w-screen-xl px-6"
   >
     <picture class="flex flex-row items-center gap-3">
       <a title="Ir al inicio" href="/">
-        <img
-          class="inline"
-          width="40"
-          height="40"
-          src={logoUrl}
-          alt="Michael Barrera Emblema"
-        />
+        <img class="inline" width="40" height="40" src={logoUrl} />
       </a>
       <span>/</span>
       <p class="text-base font-medium">{pageName}</p>
     </picture>
     <nav>
       <ul class="flex flex-row gap-7">
-        {
-          links.map((link) => (
-            <li class="font-medium text-pink-100 hover:text-pink-50">
-              <a title=`Ir a ${link}` href="#">{link}</a>
-            </li>
-          ))
-        }
+        <NavItem text="Información" link="/" linkTitle="Ir al inicio" />
+        <NavItem
+          text="Proyectos"
+          link="/proyectos"
+          linkTitle="Ir a proyectos"
+        />
+        <NavItem text="Blog" link="/blog" linkTitle="Ir al blog" />
       </ul>
     </nav>
-  </section>
+  </div>
 </header>
