@@ -10,16 +10,21 @@ import NavItem from "../components/nav/nav-item.astro";
 
 <header class="bg-pink relative w-full">
   <div
-    class="container flex flex-row items-center justify-between py-4 mx-auto max-w-screen-xl px-6"
+    class="container grid grid-flow-row grid-cols-2 items-center justify-between py-4 mx-auto max-w-screen-xl px-6"
   >
-    <picture class="flex flex-row items-center gap-3">
+    <picture class="flex flex-row justify-start items-center gap-3">
       <a title="Ir al inicio" href="/">
-        <img class="inline" width="40" height="40" src={logoUrl} />
+        <img
+          class="inline transition-all hover:scale-110 hover:brightness-110 active:brightness-100"
+          width="40"
+          height="40"
+          src={logoUrl}
+        />
       </a>
       <span>/</span>
-      <p class="text-base font-medium">{pageName}</p>
+      <p class="w-full text-pink-100 font-medium">{pageName}</p>
     </picture>
-    <nav>
+    <nav class="flex justify-end">
       <ul class="flex flex-row gap-7">
         <NavItem text="Información" link="/" linkTitle="Ir al inicio" />
         <NavItem

@@ -11,9 +11,7 @@ const currentPage = Astro.url.pathname;
 <li
     class:list={[
         "font-medium",
-        link == currentPage
-            ? "text-pink-50 underline underline-offset-3"
-            : "text-pink-200",
+        link == currentPage ? "text-pink-100 underline" : "text-pink-200",
         "hover:text-pink-50",
         "hover:underline",
         "underline-offset-2",

@@ -9,21 +9,22 @@ const { proyectCat, proyectName, proyectDesc, proyectLabels } = Astro.props;
 ---
 
 <article
-    class="group relative bg-velvet-900/10 p-9 border rounded-2xl border-pink-900/25 grid grid-cols-[2fr_min-content] gap-8 transition-all ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] delay-0 shadow-3d hover:shadow-3d-hover active:shadow-3d-active hover:border-pink-900/50 hover:bg-velvet-900/25"
+    class="group relative bg-velvet-900/10 p-9 border rounded-2xl border-pink-900/25 grid grid-cols-[2fr_min-content] gap-8 transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] shadow-3d hover:shadow-3d-hover active:shadow-3d-active hover:border-pink-900/50 hover:bg-velvet-900/25"
 >
-    <div class="flex flex-col gap-3 text-pink-100 group-hover:text-pink-50">
+    <div
+        class="flex flex-col gap-3 text-pink-100 group-hover:text-pink-50 group-active:translate-y-0.5"
+    >
         <em class="text-pink-200 not-italic">{proyectCat}</em>
         <h3 class="text-2xl font-medium">
             <a
-                class="after:content-[''] after:absolute after:inset-0"
-                href="#"
-                class="text-2xl font-medium">{proyectName}</a
+                class="after:content-[''] after:absolute after:inset-0 text-2xl font-medium"
+                href="#">{proyectName}</a
             >
         </h3>
         <p class="text-lg">{proyectDesc}</p>
     </div>
     <svg
-        class="w-auto fill-pink-400/75 group-hover:fill-pink-400"
+        class="w-auto fill-pink-400/75 group-hover:fill-pink-400 group-active:translate-y-0.5"
         width="38"
         height="39"
         viewBox="0 0 38 39"
@@ -34,7 +35,7 @@ const { proyectCat, proyectName, proyectDesc, proyectLabels } = Astro.props;
             d="M0.25 0.75H7.75V8.25H37.75V28.875H4V4.5H0.25V0.75ZM7.75 25.125H34V12H7.75V25.125ZM7.75 32.625H13.375V38.25H7.75V32.625ZM34 32.625H28.375V38.25H34V32.625Z"
             fill-opacity="0.75"></path>
     </svg>
-    <ul class="flex flex-row gap-3 items-end">
+    <ul class="flex flex-row gap-3 items-end group-active:translate-y-0.5">
         {
             proyectLabels.map((label) => (
                 <li class="text-pink-100 text-xs bg-velvet-900/25 px-3 py-1 rounded-full">

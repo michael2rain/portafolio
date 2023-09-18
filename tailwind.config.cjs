@@ -40,6 +40,8 @@ module.exports = {
 				'3d': '0px -4px 0px 0px rgba(14, 1, 7, 0.50) inset, 0px 3px 0px 0px rgba(128, 14, 62, 0.25) inset',
 				'3d-hover': '0px -4px 0px 0px rgba(14, 1, 7, 0.50) inset, 0px 3px 0px 0px rgba(128, 14, 62, 0.25) inset',
 				'3d-active': '0px 0px 0px 0px rgba(14, 1, 7, 0.50) inset, 0px 4px 0px 0px rgba(14, 1, 7, 0.25) inset',
+				'3d-button': '0px -4px 0px 0px rgba(14, 1, 7, 0.50) inset, 0px 2px 0px 0px rgba(128, 14, 62, 0.25) inset',
+				'3d-button-active': '0px 4px 0px 0px rgba(14, 1, 7, 0.50) inset, 0px -2px 0px 0px rgba(128, 14, 62, 0.25) inset',
 			},
 		},
 	},

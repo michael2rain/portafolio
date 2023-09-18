@@ -1,0 +1,11 @@
+---
+interface Props {
+    text: string;
+}
+const { text } = Astro.props;
+---
+
+<button
+    class="w-fit px-5 py-3 rounded-lg text-pink-100 hover:text-pink-50 bg-velvet-900/10 hover:bg-velvet-900/25 active:bg-velvet-900/50 border border-velvet-900/25 hover:border-velvet-900/50 active:border-velvet-900/75 shadow-3d-button active:shadow-3d-button-active transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] hover:-translate-y-0.5 active:translate-y-0"
+    >{text}</button
+>
