@@ -6,13 +6,16 @@ interface Props {
 const { logoUrl, pageName } = Astro.props;
 
 import NavItem from "../components/nav/nav-item.astro";
+import HammyButton from "../components/icons/hamburguer.astro";
 ---
 
-<header class="bg-pink relative w-full">
+<header class="bg-pink relative w-full z-50">
   <div
-    class="container grid grid-flow-row grid-cols-2 items-center justify-between py-4 mx-auto max-w-screen-xl px-6"
+    class="container relative max-w-screen-xl h-[50px] md:h-fit flex md:flex-row items-center justify-between mx-auto pl-6 pr-2 md:px-6"
   >
-    <picture class="flex flex-row justify-start items-center gap-3">
+    <picture
+      class="w-full md:w-1/2 flex flex-row justify-start items-center gap-3"
+    >
       <a title="Ir al inicio" href="/">
         <img
           class="inline transition-all hover:scale-110 hover:brightness-110 active:brightness-100"
@@ -21,11 +24,20 @@ import NavItem from "../components/nav/nav-item.astro";
           src={logoUrl}
         />
       </a>
-      <span>/</span>
-      <p class="w-full text-pink-100 font-medium">{pageName}</p>
+      <span class="text-sm md:text-base">/</span>
+      <p class="w-full text-sm md:text-base text-pink-100 font-medium">
+        {pageName}
+      </p>
     </picture>
-    <nav class="flex justify-end">
-      <ul class="flex flex-row gap-7">
+    <button class="block md:hidden p-4">
+      <HammyButton />
+    </button>
+    <nav
+      class="hidden w-full md:w-1/2 absolute md:relative inset-0 top-[49px] md:top-0 z-10"
+    >
+      <ul
+        class="w-full flex flex-col md:flex-row md:justify-end md:p-0 bg-pink brightness-110 md:bg-pink"
+      >
         <NavItem text="Información" link="/" linkTitle="Ir al inicio" />
         <NavItem
           text="Proyectos"

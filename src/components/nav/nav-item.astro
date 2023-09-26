@@ -15,7 +15,11 @@ const currentPage = Astro.url.pathname;
         "hover:text-pink-50",
         "hover:underline",
         "underline-offset-2",
+        "flex",
+        "hover:bg-velvet-900/25",
     ]}
 >
-    <a title=`Ir a ${linkTitle}` href={link}>{text}</a>
+    <a class="w-full px-5 py-4 h-max" title=`Ir a ${linkTitle}` href={link}
+        >{text}</a
+    >
 </li>
