@@ -19,7 +19,7 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
     />
     <Content>
         <section class="flex flex-col gap-6 md:gap-9 mb-8">
-            <div class="w-full flex flex-row justify-between">
+            <div class="w-full flex flex-row justify-between items-center">
                 <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
                     Proyectos recientes
                 </h2>
@@ -28,7 +28,7 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                     linkTitle="Ver todos los proyectos"
                 />
             </div>
-            <div class="flex flex-col md:grid md:grid-cols-2 md:gap-9">
+            <div class="flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-9">
                 <ProyectCard
                     proyectCat="WordPress Plugin"
                     proyectName="WooCommerce AdCombo Integration Plugin"
@@ -44,27 +44,27 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
             </div>
         </section>
         <section class="flex flex-col gap-9 my-8 items-center">
-            <h2 class="w-full text-3xl text-pink-50 font-medium">
-                Últimas publicaciones del blog
+            <h2 class="w-full text-2xl md:text-3xl text-pink-50 font-medium">
+                Publicaciones del blog
             </h2>
             <div class="flex flex-col gap-7">
                 <PostCard
                     postCat="How to"
-                    postDate="hace 3 días"
+                    postDate="Hace 3 días"
                     postTitle="Como instalar WordPress en cualquier servidor Linux"
                     postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
                     postImage="/images/imgen_destacada_del_post.png"
                 />
                 <PostCard
                     postCat="WordPress Tricks"
-                    postDate="hace 6 días"
+                    postDate="Hace 6 días"
                     postTitle="Iterar entre categorías de post y categorías de producto"
                     postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
                     postImage="/images/imgen_destacada_del_post.png"
                 />
                 <PostCard
                     postCat="How to"
-                    postDate="hace 1 semana"
+                    postDate="Hace 1 semana"
                     postTitle="Como instalar WordPress en cualquier servidor Linux"
                     postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
                     postImage="/images/imgen_destacada_del_post.png"
