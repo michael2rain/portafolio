@@ -1,0 +1,81 @@
+---
+interface Props {
+    heading: string;
+    description: string;
+}
+const { heading, description } = Astro.props;
+
+import LinkedinIcon from "../icons/linkedin-icon.astro";
+import GithubIcon from "../icons/github-icon.astro";
+---
+
+<section
+    class="bg-pink m-3.5 md:m-8 rounded-3xl h-[540px] md:h-[450px] flex flex-row items-start md:items-center py-6 bg-no-repeat bg-[url('/images/backgrounds/m-primary-pattern.svg')] bg-bottom bg-contain md:bg-[url('/images/backgrounds/primary-pattern.svg')] md:bg-[45vw_45%] md:bg-[length:850px_680px]"
+>
+    <div class="max-w-screen-lg w-full mx-auto">
+        <div class="w-full md:w-[55%] flex flex-col gap-10 md:gap-12 md:p-0">
+            <div class="flex flex-col gap-6 px-6">
+                <h1
+                    class="text-pink-400 font-black font-title text-4xl md:text-6xl"
+                >
+                    {heading}
+                </h1>
+                <p class="text-pink-100 text-xl md:text-3xl">
+                    {description}
+                </p>
+            </div>
+            <div
+                class="flex flex-col md:flex-row gap-6 items-center text-pink-100"
+            >
+                <div
+                    class="w-full md:w-fit flex flex-row items-center gap-5 px-6"
+                >
+                    <img
+                        class="w-[55px] md:w-[70px] h-fit rounded-full ring-2 ring-pink-100/25"
+                        width="75"
+                        height="75"
+                        src="/images/autor-photo.png"
+                        alt="Foto de Michael Barrera"
+                    />
+                    <div class="flex flex-col gap-1">
+                        <h2 class="text-xl md:text-2xl font-bold text-pink-50">
+                            Michael Barrera
+                        </h2>
+                        <p class="text-base md:text-lg">Desarrollador Web</p>
+                    </div>
+                </div>
+                <div
+                    class="w-full md:w-fit flex flex-row items-center bg-pink-900/10 md:bg-pink px-6 py-4 md:p-0"
+                >
+                    <div
+                        class="flex md:flex-col items-center md:items-start gap-5 md:gap-3 md:pl-6 md:border-l md:border-pink-100/25"
+                    >
+                        <p class="text-sm">Sígueme en:</p>
+                        <ul class="flex flex-row gap-5">
+                            <li class="flex flex-row items-center gap-2">
+                                <GithubIcon />
+                                <a
+                                    class="text-sm md:text-base hover:underline"
+                                    href="#"
+                                    title="Ir al perfil de GitHub"
+                                >
+                                    Github
+                                </a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2">
+                                <LinkedinIcon />
+                                <a
+                                    class="text-sm md:text-base hover:underline"
+                                    href="#"
+                                    title="Ir al perfil de Linkedin"
+                                >
+                                    Linkedin
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
