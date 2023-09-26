@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/layout.astro";
 import Content from "../layouts/containers/content.astro";
-import Hero from "../components/hero-primary.astro";
+import Hero from "../components/sections/hero-primary.astro";
 import ProyectCard from "../components/cards/proyecto.astro";
 import PillLink from "../components/buttons/pill-link.astro";
 import PostCard from "../components/cards/post.astro";
@@ -16,12 +16,11 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
     <Hero
         heading="Info"
         description="Entusiasta del código abierto, apasionado por el diseño de interfaces y la accesibilidad en la web."
-        author
     />
     <Content>
-        <section class="flex flex-col gap-9 mb-8">
+        <section class="flex flex-col gap-6 md:gap-9 mb-8">
             <div class="w-full flex flex-row justify-between">
-                <h2 class="text-3xl text-pink-50 font-medium">
+                <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
                     Proyectos recientes
                 </h2>
                 <PillLink
@@ -29,7 +28,7 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                     linkTitle="Ver todos los proyectos"
                 />
             </div>
-            <div class="grid grid-cols-2 gap-9">
+            <div class="flex flex-col md:grid md:grid-cols-2 md:gap-9">
                 <ProyectCard
                     proyectCat="WordPress Plugin"
                     proyectName="WooCommerce AdCombo Integration Plugin"
