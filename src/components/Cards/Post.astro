@@ -4,19 +4,21 @@ interface Props {
     postDate: string;
     postTitle: string;
     postDesc: string;
+    postLectureTime: string;
     postImage: string;
 }
-const { postTitle, postCat, postDate, postDesc, postImage } = Astro.props;
+const { postTitle, postCat, postDate, postDesc, postLectureTime, postImage } =
+    Astro.props;
 ---
 
 <article
-    class="group relative grid grid-cols-[1fr_100px] gap-4 grid-flow-col bg-velvet-900/10 p-9 border rounded-2xl border-pink-900/25 transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] shadow-3d hover:shadow-3d-hover active:shadow-3d-active hover:border-pink-900/50 hover:bg-velvet-900/25"
+    class="group relative grid grid-cols-[1fr_70px] md:grid-cols-[1fr_120px] gap-x-4 md:gap-x-8 gap-y-3 grid-flow-col bg-velvet-900/10 p-6 pb-4 md:p-9 border rounded-2xl border-pink-900/25 transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] shadow-3d hover:shadow-3d-hover active:shadow-3d-active hover:border-pink-900/50 hover:bg-velvet-900/25"
 >
     <div
-        class="col-span-1 max-h-min flex flex-row items-center gap-2 group-active:translate-y-0.5"
+        class="col-span-1 max-h-min flex flex-row items-center gap-1 group-active:translate-y-0.5"
     >
         <svg
-            class="fill-pink-200"
+            class="fill-pink-200 hidden md:block"
             width="16"
             height="16"
             viewBox="0 0 24 24"
@@ -25,25 +27,36 @@ const { postTitle, postCat, postDate, postDesc, postImage } = Astro.props;
         >
             <path d="M4 4H12V6H22V20H2V4H4ZM20 8H10V6H4V18H20V8Z"></path>
         </svg>
-        <em class="text-pink-200 not-italic text">{postCat}</em>
-        <span class="text-pink-200/75">-</span>
-        <p class="text-pink-200/75 text-sm">Publicado {postDate}</p>
+        <em
+            class="w-fit shrink text-pink-200 not-italic text-sm md:text-base line-clamp-1 md:line-clamp-none"
+            >{postCat}</em
+        >
+        <span class="text-pink-200/75 text-sm md:text-base">-</span>
+        <p class="grow text-pink-200/75 text-sm md:text-base line-clamp-1">
+            {postDate}
+        </p>
     </div>
-    <h3 class="col-span-1 text-2xl font-medium group-active:translate-y-0.5">
-        <a
-            class="after:content-[''] after:absolute after:inset-0 text-2xl font-medium text-pink-100 group-hover:text-pink-50"
-            href="#">{postTitle}</a
+    <h3
+        class="col-span-1 text-xl md:text-2xl font-medium text-pink-100 pb-2 md:p-0 group-hover:text-pink-50 line-clamp-3 group-active:translate-y-0.5"
+    >
+        <a class="after:content-[''] after:absolute after:inset-0" href="#"
+            >{postTitle}</a
         >
     </h3>
     <p
-        class="col-span-1 text-lg text-pink-200 group-hover:text-pink-100 group-active:translate-y-0.5"
+        class="col-span-1 text-lg text-pink-200 group-hover:text-pink-100 group-active:translate-y-0.5 hidden md:block pb-3"
     >
         {postDesc}
     </p>
+    <p
+        class="col-span-1 text-xs md:text-sm text-pink-200/75 group-active:translate-y-0.5"
+    >
+        {postLectureTime}
+    </p>
     <img
-        class="row-span-3 rounded-lg ring-2 ring-pink-900/25 group-hover:brightness-110 group-active:translate-y-0.5"
-        width="100"
-        height="100"
+        class="row-span-4 rounded-lg ring-2 ring-pink-900/25 group-hover:brightness-110 group-active:translate-y-0.5"
+        width="120"
+        height="120"
         src={postImage}
         alt=`Imagen destacada de "${postTitle}"`
     />

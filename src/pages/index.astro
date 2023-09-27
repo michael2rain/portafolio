@@ -18,8 +18,10 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
         description="Entusiasta del código abierto, apasionado por el diseño de interfaces y la accesibilidad en la web."
     />
     <Content>
-        <section class="flex flex-col gap-6 md:gap-9 mb-8">
-            <div class="w-full flex flex-row justify-between items-center">
+        <section class="flex flex-col gap-7 md:gap-9 mb-12">
+            <div
+                class="w-full flex flex-row justify-between items-center md:px-6 lg:px-12 xl:px-0"
+            >
                 <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
                     Proyectos recientes
                 </h2>
@@ -28,7 +30,9 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                     linkTitle="Ver todos los proyectos"
                 />
             </div>
-            <div class="flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-9">
+            <div
+                class="flex flex-col md:grid md:grid-cols-[repeat(2,_500px)] lg:grid-cols-2 gap-5 md:gap-9 md:overflow-x-auto md:px-6 lg:px-12 xl:px-0"
+            >
                 <ProyectCard
                     proyectCat="WordPress Plugin"
                     proyectName="WooCommerce AdCombo Integration Plugin"
@@ -43,16 +47,19 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                 />
             </div>
         </section>
-        <section class="flex flex-col gap-9 my-8 items-center">
+        <section
+            class="flex flex-col gap-7 md:gap-9 items-center md:p-6 lg:px-12 xl:p-0"
+        >
             <h2 class="w-full text-2xl md:text-3xl text-pink-50 font-medium">
                 Publicaciones del blog
             </h2>
-            <div class="flex flex-col gap-7">
+            <div class="flex flex-col gap-5 md:gap-7">
                 <PostCard
                     postCat="How to"
                     postDate="Hace 3 días"
                     postTitle="Como instalar WordPress en cualquier servidor Linux"
                     postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
+                    postLectureTime="3min de lectura"
                     postImage="/images/imgen_destacada_del_post.png"
                 />
                 <PostCard
@@ -60,6 +67,7 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                     postDate="Hace 6 días"
                     postTitle="Iterar entre categorías de post y categorías de producto"
                     postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
+                    postLectureTime="3min de lectura"
                     postImage="/images/imgen_destacada_del_post.png"
                 />
                 <PostCard
@@ -67,6 +75,7 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                     postDate="Hace 1 semana"
                     postTitle="Como instalar WordPress en cualquier servidor Linux"
                     postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
+                    postLectureTime="3min de lectura"
                     postImage="/images/imgen_destacada_del_post.png"
                 />
             </div>
