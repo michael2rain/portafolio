@@ -2,7 +2,7 @@
 import Layout from "../layouts/layout.astro";
 import Content from "../layouts/containers/content.astro";
 
-import Hero from "../components/sections/hero-primary.astro";
+import Hero from "../components/sections/heroPrimary.astro";
 ---
 
 <Layout
@@ -12,6 +12,8 @@ import Hero from "../components/sections/hero-primary.astro";
 >
     <Hero heading="Blog" description="fded" />
     <Content>
-        <section class="flex flex-col gap-9"></section>
+        <section class="flex flex-col gap-9">
+            <h2>Bienvenido al Blog</h2>
+        </section>
     </Content>
 </Layout>

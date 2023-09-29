@@ -40,9 +40,9 @@
     </picture>
     <button on:click={onClick} class="block lg:hidden p-5">
       {#if !isOpen}
-        <HamburguerIcons width="16" classes="fill-pink-100" />
+        <HamburguerIcons width={16} classes="fill-pink-100" />
       {:else}
-        <HamburguerIcons closeIcon width="16" classes="fill-pink-100" />
+        <HamburguerIcons closeIcon width={16} classes="fill-pink-100" />
       {/if}
     </button>
     <nav

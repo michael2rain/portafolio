@@ -1,5 +1,5 @@
 <script>
-    export let width;
+    export let width = 16;
     export let closeIcon = false;
     export let classes = "";
 </script>
@@ -8,7 +8,7 @@
     <svg
         class={classes}
         {width}
-        height="auto"
+        height={width}
         viewBox="0 0 16 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
     <svg
         class={classes}
         {width}
-        height="auto"
+        height={width}
         viewBox="0 0 14 14"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
