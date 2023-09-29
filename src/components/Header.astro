@@ -6,15 +6,15 @@ interface Props {
 const { logoUrl, pageName } = Astro.props;
 
 import NavItem from "../components/nav/nav-item.astro";
-import HammyButton from "../components/icons/hamburguer.astro";
+import Hamburguer from "./buttons/hamburguer.svelte";
 ---
 
 <header class="bg-pink relative w-full z-50">
   <div
-    class="container relative max-w-screen-xl h-[50px] md:h-fit flex md:flex-row items-center justify-between mx-auto pl-6 pr-2 md:px-6"
+    class="container relative max-w-screen-xl h-[55px] lg:h-fit flex md:flex-row items-center justify-between mx-auto pl-5 lg:pl-6 lg:pr-1"
   >
     <picture
-      class="w-full md:w-1/2 flex flex-row justify-start items-center gap-3"
+      class="w-full md:w-1/2 flex flex-row justify-start items-center gap-2 md:gap-3"
     >
       <a title="Ir al inicio" href="/">
         <img
@@ -29,14 +29,13 @@ import HammyButton from "../components/icons/hamburguer.astro";
         {pageName}
       </p>
     </picture>
-    <button class="block md:hidden p-4">
-      <HammyButton />
-    </button>
+    <Hamburguer client:load />
     <nav
-      class="hidden w-full md:w-1/2 absolute md:relative inset-0 top-[49px] md:top-0 z-10"
+      id="navMenuPrimary"
+      class="w-[200px] lg:w-1/2 absolute lg:relative invisible lg:visible top-10 lg:top-0 right-5 lg:right-0 transition-all ease-in duration-100 opacity-0 lg:opacity-100 scale-95 lg:scale-100 z-10"
     >
       <ul
-        class="w-full flex flex-col md:flex-row md:justify-end md:p-0 bg-pink brightness-110 md:bg-pink"
+        class="w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
       >
         <NavItem text="Información" link="/" linkTitle="Ir al inicio" />
         <NavItem
@@ -49,3 +48,45 @@ import HammyButton from "../components/icons/hamburguer.astro";
     </nav>
   </div>
 </header>
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hammyButton = document.getElementById("hammyButton");
+    const menuPrimary = document.getElementById("navMenuPrimary");
+    let firstClick = true;
+
+    hammyButton.onclick = () => {
+      if (firstClick) {
+        menuPrimary.classList.remove(
+          "invisible",
+          "scale-95",
+          "top-10",
+          "opacity-0",
+        );
+        menuPrimary.classList.add(
+          "visible",
+          "scale-100",
+          "top-12",
+          "opacity-100",
+        );
+        firstClick = false;
+        OpenModal = true;
+      } else {
+        menuPrimary.classList.remove(
+          "visible",
+          "scale-100",
+          "top-12",
+          "opacity-100",
+        );
+        menuPrimary.classList.add(
+          "invisible",
+          "scale-95",
+          "top-10",
+          "opacity-0",
+        );
+        firstClick = true;
+        OpenModal = false;
+      }
+    };
+  });
+</script> -->
