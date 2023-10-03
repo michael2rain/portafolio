@@ -2,12 +2,13 @@
 interface Props {
     text: string;
     linkTitle: string;
+    className: string;
 }
-const { text, linkTitle } = Astro.props;
+const { text, linkTitle, className } = Astro.props;
 ---
 
 <a
-    class="text-sm md:text-base px-3 md:px-4 py-2 bg-velvet-900/[0.15] rounded-full text-pink-100 flex flex-row items-center gap-3 hover:bg-velvet-900/25 hover:text-pink-50 active:bg-velvet-900/30"
+    class=`${className} text-sm md:text-base px-3 md:px-4 py-2 bg-velvet-900/[0.15] rounded-full text-pink-100 flex flex-row items-center gap-3 hover:bg-velvet-900/25 hover:text-pink-50 active:bg-velvet-900/30`
     href="#"
     title=`Ir a ${linkTitle}`
     >{text}

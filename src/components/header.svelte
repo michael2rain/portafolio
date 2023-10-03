@@ -2,6 +2,7 @@
   import NavItem from "./nav/nav-item.svelte";
   import HamburguerIcons from "./icons/hamburguer.svelte";
 
+  export let currentPathName;
   export let logoUrl;
   export let pageName;
 
@@ -38,7 +39,7 @@
         {pageName}
       </p>
     </picture>
-    <button on:click={onClick} class="block lg:hidden p-5">
+    <button on:click={onClick} class="block lg:hidden p-5 focus:bg-pink-100/5">
       {#if !isOpen}
         <HamburguerIcons width={16} classes="fill-pink-100" />
       {:else}
@@ -51,13 +52,24 @@
       <ul
         class="w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
       >
-        <NavItem text="Información" link="/" linkTitle="Ir al inicio" />
+        <NavItem
+          text="Información"
+          link="/"
+          linkTitle="Ir al inicio"
+          activeUrl={currentPathName}
+        />
         <NavItem
           text="Proyectos"
-          link="/proyectos"
+          link="/proyectos/"
           linkTitle="Ir a proyectos"
+          activeUrl={currentPathName}
         />
-        <NavItem text="Blog" link="/blog" linkTitle="Ir al blog" />
+        <NavItem
+          text="Blog"
+          link="/blog/"
+          linkTitle="Ir al blog"
+          activeUrl={currentPathName}
+        />
       </ul>
     </nav>
   </div>

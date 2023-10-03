@@ -14,6 +14,8 @@ import "@fontsource/dela-gothic-one/400.css";
 
 import Header from "../components/header.svelte";
 import Footer from "../components/footer.astro";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <html lang="es">
@@ -27,7 +29,12 @@ import Footer from "../components/footer.astro";
     <body
         class="bg-velvet text-velvet-50 selection:bg-velvet-800 selection:text-velvet-50"
     >
-        <Header logoUrl="/favicon.png" pageName={pageTitle} client:load />
+        <Header
+            logoUrl="/favicon.png"
+            pageName={pageTitle}
+            currentPathName={currentPath}
+            client:load
+        />
         <main class="relative w-full">
             <slot />
         </main>
