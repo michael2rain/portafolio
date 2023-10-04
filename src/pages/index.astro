@@ -2,10 +2,8 @@
 import Layout from "../layouts/layout.astro";
 import Content from "../layouts/containers/content.astro";
 import Hero from "../components/sections/heroPrimary.astro";
-import ProyectCard from "../components/cards/proyecto.astro";
-import PillLink from "../components/buttons/pillLink.astro";
+import ProyectCard from "../components/cards/proyect.astro";
 import PostCard from "../components/cards/post.astro";
-import ButtonSecondary from "../components/buttons/secondary.astro";
 ---
 
 <Layout
@@ -18,42 +16,52 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
         description="Entusiasta del código abierto, apasionado por el diseño de interfaces y la accesibilidad en la web."
     />
     <Content>
-        <section class="flex flex-col gap-7 md:gap-9 mb-12">
-            <div
-                class="w-full flex flex-row justify-between items-center md:px-6 lg:px-12 xl:px-0"
+        <section
+            class="flex flex-row flex-wrap justify-center md:justify-start gap-5 lg:gap-7 lg:gap-y-6 md:px-6 lg:px-12 xl:px-0 mb-10 lg:mb-14"
+        >
+            <h2
+                class="w-full md:w-fit text-2xl md:text-3xl text-pink-50 font-medium pb-2"
             >
-                <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
-                    Proyectos recientes
-                </h2>
-                <PillLink
-                    text="Ver todos"
-                    linkTitle="Ver todos los proyectos"
-                />
-            </div>
+                Proyectos recientes
+            </h2>
             <div
-                class="flex flex-col md:grid md:grid-cols-[repeat(2,_500px)] lg:grid-cols-2 gap-5 md:gap-9 md:overflow-x-auto md:px-6 lg:px-12 xl:px-0"
+                class="flex flex-1 basis-2/4 lg:basis-2/3 justify-center md:justify-start items-center order-last md:order-none mt-3 md:mt-0"
             >
-                <ProyectCard
-                    proyectCat="WordPress Plugin"
-                    proyectName="WooCommerce AdCombo Integration Plugin"
-                    proyectDesc="Integración entre WooCommerce y la API de AdCombo, para crear pedidos y enviar la información del cliente en tiempo real."
-                    proyectLabels={["PHP", "Woocommerce", "WordPress"]}
-                />
-                <ProyectCard
-                    proyectCat="E-commerce"
-                    proyectName="Naturista Express"
-                    proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
-                    proyectLabels={["PHP", "JavaScript", "Woocommerce"]}
-                />
+                <a
+                    class="text-pink-200 hover:text-pink-100 underline-offset-2 decoration-dashed hover:underline"
+                    href="/portafolio">Visitar portafolio</a
+                >
             </div>
+            <ProyectCard
+                className="basis-auto lg:basis-[calc(50%_-_14px)]"
+                proyectCat="WordPress Plugin"
+                proyectName="WooCommerce AdCombo Integration"
+                proyectDesc="Integración entre WooCommerce y la API de AdCombo, para crear pedidos y enviar la información del cliente en tiempo real."
+            />
+            <ProyectCard
+                className="basis-auto lg:basis-[calc(50%_-_14px)]"
+                proyectCat="E-commerce"
+                proyectName="Naturista Express"
+                proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
+            />
         </section>
         <section
-            class="flex flex-col gap-7 md:gap-9 items-center md:p-6 lg:px-12 xl:p-0"
+            class="flex flex-row flex-wrap gap-5 md:gap-7 items-center md:p-6 lg:px-12 xl:p-0"
         >
-            <h2 class="w-full text-2xl md:text-3xl text-pink-50 font-medium">
+            <h2
+                class="flex-0 text-2xl md:text-3xl text-pink-50 font-medium pb-2"
+            >
                 Publicaciones del blog
             </h2>
-            <div class="flex flex-col gap-5 md:gap-7">
+            <div
+                class="flex flex-1 basis-2/4 justify-center md:justify-start items-center order-last md:order-none mt-3 md:mt-0"
+            >
+                <a
+                    class="text-pink-200 hover:text-pink-100 underline-offset-2 decoration-dashed hover:underline"
+                    href="#">Visitar blog</a
+                >
+            </div>
+            <div class="w-full flex flex-col gap-5 md:gap-7">
                 <PostCard
                     postCat="How to"
                     postDate="Hace 3 días"
@@ -79,7 +87,6 @@ import ButtonSecondary from "../components/buttons/secondary.astro";
                     postImage="/images/imgen_destacada_del_post.png"
                 />
             </div>
-            <ButtonSecondary text="Cargar más post" />
         </section>
     </Content>
 </Layout>

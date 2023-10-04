@@ -1,20 +1,21 @@
 ---
 interface Props {
     width: number;
-    clases: string;
+    className: string;
 }
 
-const { width, clases } = Astro.props;
+const { width, className } = Astro.props;
 ---
 
 <svg
-    class={clases}
+    class={className}
     width={width}
     height={width}
-    viewBox="0 0 38 39"
+    viewBox="0 0 24 24"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
 >
     <path
-        d="M0.25 0.75H7.75V8.25H37.75V28.875H4V4.5H0.25V0.75ZM7.75 25.125H34V12H7.75V25.125ZM7.75 32.625H13.375V38.25H7.75V32.625ZM34 32.625H28.375V38.25H34V32.625Z"
-        fill-opacity="0.75"></path>
+        d="M2 2H6V6H22V17H4V4H2V2ZM6 15H20V8H6V15ZM6 19H9V22H6V19ZM20 19H17V22H20V19Z"
+    ></path>
 </svg>

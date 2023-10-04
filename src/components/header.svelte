@@ -6,14 +6,14 @@
   export let logoUrl;
   export let pageName;
 
-  let menuClasses = "invisible top-10 scale-95 opacity-0";
+  let className = "invisible top-10 scale-95 opacity-0";
   let isOpen = false;
 
   function onClick() {
     isOpen = !isOpen;
-    menuClasses = "visible top-12 scale-100 opacity-100";
+    className = "visible top-12 scale-100 opacity-100";
     if (!isOpen) {
-      menuClasses = "invisible top-10 scale-95 opacity-0";
+      className = "invisible top-10 scale-95 opacity-0";
     }
   }
 </script>
@@ -41,13 +41,13 @@
     </picture>
     <button on:click={onClick} class="block lg:hidden p-5 focus:bg-pink-100/5">
       {#if !isOpen}
-        <HamburguerIcons width={16} classes="fill-pink-100" />
+        <HamburguerIcons width={16} className="fill-pink-100" />
       {:else}
-        <HamburguerIcons closeIcon width={16} classes="fill-pink-100" />
+        <HamburguerIcons closeIcon width={16} className="fill-pink-100" />
       {/if}
     </button>
     <nav
-      class="{menuClasses} w-[200px] lg:w-1/2 absolute lg:relative lg:visible lg:top-0 right-5 lg:right-0 transition-all ease-in duration-100 lg:opacity-100 lg:scale-100 z-10"
+      class="{className} w-[200px] lg:w-1/2 absolute lg:relative lg:visible lg:top-0 right-5 lg:right-0 transition-all ease-in duration-100 lg:opacity-100 lg:scale-100 z-10"
     >
       <ul
         class="w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
@@ -59,9 +59,9 @@
           activeUrl={currentPathName}
         />
         <NavItem
-          text="Proyectos"
-          link="/proyectos/"
-          linkTitle="Ir a proyectos"
+          text="Portafolio"
+          link="/portafolio/"
+          linkTitle="Visitar el portafolio"
           activeUrl={currentPathName}
         />
         <NavItem

@@ -1,12 +1,12 @@
 <script>
     export let width = 16;
     export let closeIcon = false;
-    export let classes = "";
+    export let className = "";
 </script>
 
 {#if !closeIcon}
     <svg
-        class={classes}
+        class={className}
         {width}
         height={width}
         viewBox="0 0 16 12"
@@ -17,7 +17,7 @@
     </svg>
 {:else}
     <svg
-        class={classes}
+        class={className}
         {width}
         height={width}
         viewBox="0 0 14 14"
