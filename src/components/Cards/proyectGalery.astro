@@ -1,0 +1,51 @@
+---
+interface Props {
+    className: string;
+    proyectCat: string;
+    proyectName: string;
+    proyectDesc: string;
+    proyectLink: string;
+    images: string[];
+}
+const { proyectName, proyectDesc, className, proyectLink, images } =
+    Astro.props;
+
+import PillLink from "../buttons/pillLink.astro";
+---
+
+<article
+    class=`${className} group relative w-full h-fit md:h-[260px] flex flex-col-reverse md:flex-row items-center bg-velvet-900/10 md:p-9 md:pr-0 rounded-2xl gap-7 transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] hover:border-pink-900/50 hover:bg-velvet-900/25 overflow-hidden`
+>
+    <div
+        class="w-full md:w-[40%] flex flex-col gap-3 text-pink-100 group-hover:text-pink-50 p-6 lg:p-0"
+    >
+        <h3 class="text-xl md:text-2xl font-medium line-clamp-2">
+            {proyectName}
+        </h3>
+        <p class="text-base md:text-lg line-clamp-3 mb-3">
+            {proyectDesc}
+        </p>
+        <PillLink
+            className="w-fit hover:underline hover:decoration-dashed"
+            text="Leer más"
+            linkTitle="Visitar proyecto"
+        />
+    </div>
+    <ul
+        class="w-full flex flex-row gap-4 overflow-x-scroll lg:overflow-hidden max-h-full"
+    >
+        {
+            images.map((image) => (
+                <li class="flex-none flex items-end bg-velvet/50 rounded-xl h-full w-[260px] p-3 pb-0 pr-4">
+                    <img
+                        class="grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 hidden md:block md:w-[320px] lg:w-[350px] xl:w-full h-full object-cover bottom-0 transition-all"
+                        width="213"
+                        height="auto"
+                        src={image}
+                        alt=""
+                    />
+                </li>
+            ))
+        }
+    </ul>
+</article>

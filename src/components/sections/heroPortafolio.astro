@@ -1,0 +1,54 @@
+---
+interface Props {
+    heading: string;
+    description: string;
+}
+const { heading, description } = Astro.props;
+---
+
+<section
+    class="bg-pink m-3.5 md:mx-4 md:my-8 lg:m-4 xl:m-8 py-7 md:py-12 pb-10 md:px-12 rounded-3xl h-fit md:h-fit lg:h-[440px] flex flex-row items-start md:items-center bg-no-repeat md:bg-[url('/images/backgrounds/page-pattern.svg')] md:bg-[50vw_45%] md:bg-contain"
+>
+    <div class="max-w-screen-lg w-full mx-auto">
+        <div
+            class="w-full md:w-[75%] lg:w-[65%] xl:w-[57%] flex flex-col gap-10 lg:gap-14 md:p-0"
+        >
+            <div class="flex flex-col gap-6 md:gap-10 px-6 md:px-0 lg:px-0">
+                <h1
+                    class="text-pink-400 font-black font-title text-4xl md:text-5xl lg:text-6xl"
+                >
+                    {heading}
+                </h1>
+                <p class="text-pink-100 text-xl md:text-2xl mb-3 md:mb-0">
+                    {description}
+                </p>
+                <ul
+                    class="flex flex-row flex-wrap md:gap-7 lg:gap-5 gap-x-7 md:gap-x-5 md:justify-between md:w-[65%] lg:w-full"
+                >
+                    <li>
+                        <p class="text-pink-200 text-xs mb-1">
+                            Lenguaje en el que mejoré:
+                        </p>
+                        <p class="text-2xl font-medium">JavaScript</p>
+                    </li>
+                    <li>
+                        <p class="text-pink-200 text-xs mb-1">
+                            Lenguaje de trabajo:
+                        </p>
+                        <p class="text-2xl font-medium">PHP</p>
+                    </li>
+                    <li>
+                        <p class="text-pink-200 text-xs mb-1">
+                            El framework preferido:
+                        </p>
+                        <p class="text-2xl font-medium">Astro</p>
+                    </li>
+                    <li>
+                        <p class="text-pink-200 text-xs mb-1">CMS más usado:</p>
+                        <p class="text-2xl font-medium">WordPress</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
