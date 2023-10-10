@@ -1,0 +1,21 @@
+---
+interface Props {
+    text: string;
+    icon?: "ExternalLinkIcon" | "EyeIcon";
+}
+const { text, icon } = Astro.props;
+
+import ExternalLinkIcon from "../icons/externalLink.astro";
+import EyeIcon from "../icons/eye.astro";
+---
+
+<button
+    class="group/buttonPrimary w-fit flex flex-row items-center gap-2 px-5 py-3 rounded-lg text-pink-100 hover:text-pink-50 bg-pink-900/50 hover:bg-pink-900/75 active:bg-pink-900 border border-pink-400/50 hover:border-pink-400/50 active:border-pink-400/75 shadow-3d-button active:shadow-3d-button-active transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] hover:-translate-y-0.5 active:translate-y-0"
+    >{text}
+    {
+        icon === "ExternalLinkIcon" && (
+            <ExternalLinkIcon width="18" className="fill-pink-100" />
+        )
+    }
+    {icon === "EyeIcon" && <EyeIcon className="fill-pink-100" width="18" />}
+</button>
