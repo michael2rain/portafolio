@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/layout.astro";
+import Content from "../../layouts/containers/content.astro";
+import HeroProyect from "../../components/sections/heroProyect.astro";
+import GaleryLigthbox from "../../components/sections/galeryLigthbox.svelte";
+---
+
+<Layout
+    title="Portafolio 2023 - Michael Barrera Developer"
+    pageTitle="Portafolio"
+    pageDescription="Listado de todos los proyectos relevantes"
+>
+    <HeroProyect
+        heading="Naturista Express"
+        description="Una tienda que funciona con Woocommerce y es llevado a su máximo potencial."
+    />
+    <Content className="gap-10">
+        <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+            <h2 class="w-[30%] flex-1 text-3xl font-medium">Características</h2>
+            <div
+                class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90"
+            >
+                <p>
+                    Naturista Express es un marketplace de productos de
+                    afiliación, donde los clientes pueden encontrar productos de
+                    diferentes fabricantes a precios de descuento.
+                </p>
+                <h3>Tema desarrollado a la medida</h3>
+                <p>
+                    Parte del trabajo consistía en desarrollar un tema
+                    personalizado para WordPress. Con la finalidad de modificar
+                    las páginas de Pago y de Carrito de compras, que se incluyen
+                    por defecto en Woocomerce.<br /><br />Se hizo de esta manera
+                    ya que es la manera recomendada para modificar y extender
+                    las funcionalidades sin afectar la compatibilidad entre
+                    versiones.
+                </p>
+                <h3>Conexión con API externa</h3>
+                <p>
+                    Para lograr la automatización del proceso de compra, se
+                    necesitaba enviar los datos del pedido al sistema del
+                    cliente, que se encargaba de generar pedidos y enviarlos a
+                    su centro de ventas. <br />
+                    <br />Con este objetivo desarrolle un plugin que envía los
+                    datos del pedido a una API del sistema interno del cliente,
+                    cada que se crea un pedido, se realizan las acciones que
+                    Woocomerce necesite realizar y en cuanto se pasa el pedido a
+                    procesando, se realiza el envío de la información.
+                </p>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+            <h2 class="w-[30%] flex-1 text-3xl font-medium">Screenshots</h2>
+            <GaleryLigthbox
+                client:only
+                images={[
+                    {
+                        small: "https://rstr.in/00q1otapgu4jgh/my-library/7Nlg1Brgia9/uzfswLg3uIt",
+                        large: "https://rstr.in/00q1otapgu4jgh/my-library/7Nlg1Brgia9/AmFTonmYUYX",
+                    },
+                    {
+                        small: "https://rstr.in/00q1otapgu4jgh/my-library/boNOnaffAkw/ax2L9tvS4Vp",
+                        large: "https://rstr.in/00q1otapgu4jgh/my-library/boNOnaffAkw/V_7sx21bqw8",
+                    },
+                    {
+                        small: "https://rstr.in/00q1otapgu4jgh/my-library/ZBy1GGjVyfQ/0ZPTX7aS1Kq",
+                        large: "https://rstr.in/00q1otapgu4jgh/my-library/ZBy1GGjVyfQ/YPX_DFT0-Ev",
+                    },
+                    {
+                        small: "https://rstr.in/00q1otapgu4jgh/my-library/ZXXF3YanGRt/b0ndx1-H4iZ",
+                        large: "https://rstr.in/00q1otapgu4jgh/my-library/ZXXF3YanGRt/CZ37hhcmlsJ",
+                    },
+                ]}
+            />
+        </div>
+    </Content>
+</Layout>

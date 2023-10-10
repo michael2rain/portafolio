@@ -4,6 +4,51 @@ import Content from "../layouts/containers/content.astro";
 import Hero from "../components/sections/heroPrimary.astro";
 import ProyectCard from "../components/cards/proyect.astro";
 import PostCard from "../components/cards/post.astro";
+
+import { formatDistanceStrict } from "date-fns";
+import { es } from "date-fns/locale";
+
+import { wpquery } from "../graphql/wordpress";
+
+const data = await wpquery({
+    query: `
+    query recentPost {
+        posts {
+            nodes {
+                slug
+                date
+                title
+                excerpt
+                content
+                categories {
+                    nodes {
+                        name
+                    }
+                }
+                featuredImage {
+                    node {
+                        sourceUrl(size: MEDIUM)
+                    }
+                }
+            }
+        }
+    }
+    `,
+});
+
+const dateFormat = (fecha) => {
+    const fechaBase = new Date(fecha);
+    const result = formatDistanceStrict(new Date(), fechaBase, { locale: es });
+    return `Hace ${result}`;
+};
+
+const readingTime = (content) => {
+    const wpm = 225;
+    const words = content.trim().split(/\s+/).length;
+    const time = Math.ceil(words / wpm);
+    console.log(time);
+    return time;
+};
 ---
 
 <Layout
@@ -62,30 +107,25 @@ import PostCard from "../components/cards/post.astro";
                 >
             </div>
             <div class="w-full flex flex-col gap-5 md:gap-7">
-                <PostCard
-                    postCat="How to"
-                    postDate="Hace 3 días"
-                    postTitle="Como instalar WordPress en cualquier servidor Linux"
-                    postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
-                    postLectureTime="3min de lectura"
-                    postImage="/images/imgen_destacada_del_post.png"
-                />
-                <PostCard
-                    postCat="WordPress Tricks"
-                    postDate="Hace 6 días"
-                    postTitle="Iterar entre categorías de post y categorías de producto"
-                    postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
-                    postLectureTime="3min de lectura"
-                    postImage="/images/imgen_destacada_del_post.png"
-                />
-                <PostCard
-                    postCat="How to"
-                    postDate="Hace 1 semana"
-                    postTitle="Como instalar WordPress en cualquier servidor Linux"
-                    postDesc="Lorem ipsum dolor sit amet consectetur. Orci ac nunc non ullamcorper. Cursus tincidunt ornare malesuada ridiculus odio sed integer erat iaculis."
-                    postLectureTime="3min de lectura"
-                    postImage="/images/imgen_destacada_del_post.png"
-                />
+                {
+                    data.posts.nodes.map((post: any) => {
+                        return (
+                            <PostCard
+                                postCat={
+                                    post.categories.nodes.map((name) => {
+                                        return name.name;
+                                    })[0]
+                                }
+                                postDate={dateFormat(post.date)}
+                                postTitle={post.title}
+                                postExcerpt={post.excerpt}
+                                postSlug={post.slug}
+                                postLectureTime={readingTime(post.content)}
+                                postImage={post.featuredImage?.node.sourceUrl}
+                            />
+                        );
+                    })
+                }
             </div>
         </section>
     </Content>

@@ -1,0 +1,44 @@
+---
+interface Props {
+    heading: string;
+    description: string;
+}
+const { heading, description } = Astro.props;
+
+import PrimaryButtonIcon from "../buttons/primaryIcon.astro";
+import ExternalLink from "../icons/externalLink.astro";
+---
+
+<section
+    class="bg-pink m-3.5 md:mx-4 md:my-8 lg:m-4 xl:m-8 md:pr-0 lg:px-12 pt-7 md:pt-12 lg:pt-10 rounded-3xl h-fit md:h-[450px] lg:h-[430px] xl:h-[480px] flex flex-row items-start md:items-end overflow-hidden"
+>
+    <div
+        class="max-w-screen-lg w-full max-h-full mx-auto flex flex-col md:flex-row items-center md:items-end gap-10"
+    >
+        <div
+            class="w-full md:w-[70%] flex flex-col gap-10 md:gap-0 lg:gap-14 md:p-0"
+        >
+            <div
+                class="w-full flex flex-1 flex-col gap-7 md:gap-10 px-6 md:px-0 lg:px-0 md:pb-12 lg:pb-12 xl:pb-16"
+            >
+                <h1
+                    class="text-pink-400 font-black font-title text-4xl md:text-5xl lg:text-5xl"
+                >
+                    {heading}
+                </h1>
+                <p class="text-pink-100 text-xl md:text-2xl mb-3 md:mb-0">
+                    {description}
+                </p>
+                <PrimaryButtonIcon
+                    text="Visitar sitio web"
+                    icon="ExternalLinkIcon"
+                />
+            </div>
+        </div>
+        <img
+            class="lg:relative w-full md:w-[520px] lg:w-[55%] object-contain px-4 pr-7 md:p-0 md:translate-x-12 lg:translate-x-0"
+            src="/images/proyect-img.png"
+            alt="Portada del proyecto"
+        />
+    </div>
+</section>

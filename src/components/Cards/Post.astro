@@ -3,20 +3,26 @@ interface Props {
     postCat: string;
     postDate: string;
     postTitle: string;
-    postDesc: string;
+    postExcerpt: string;
+    postSlug: string;
     postLectureTime: string;
     postImage: string;
 }
-const { postTitle, postCat, postDate, postDesc, postLectureTime, postImage } =
-    Astro.props;
+const {
+    postTitle,
+    postCat,
+    postDate,
+    postExcerpt,
+    postSlug,
+    postLectureTime,
+    postImage,
+} = Astro.props;
 ---
 
 <article
     class="group relative grid grid-cols-[1fr_70px] md:grid-cols-[1fr_120px] gap-x-4 md:gap-x-8 gap-y-3 grid-flow-col bg-velvet-900/10 p-6 pb-4 md:p-9 rounded-2xl transition ease-[cubic-bezier(0.345, 0.115, 0.135, 1.42)] hover:bg-velvet-900/25"
 >
-    <div
-        class="col-span-1 max-h-min flex flex-row items-center gap-1 group-active:translate-y-0.5"
-    >
+    <div class="col-span-1 max-h-min flex flex-row items-center gap-1">
         <svg
             class="fill-pink-200 hidden md:block"
             width="16"
@@ -37,27 +43,25 @@ const { postTitle, postCat, postDate, postDesc, postLectureTime, postImage } =
         </p>
     </div>
     <h3
-        class="col-span-1 text-xl md:text-2xl font-medium text-pink-100 pb-2 md:p-0 group-hover:text-pink-50 line-clamp-3 group-active:translate-y-0.5"
+        class="col-span-1 text-xl md:text-2xl font-medium text-pink-100 pb-2 md:p-0 group-hover:text-pink-50 line-clamp-3"
     >
-        <a class="after:content-[''] after:absolute after:inset-0" href="#"
-            >{postTitle}</a
+        <a
+            class="after:content-[''] after:absolute after:inset-0"
+            href={postSlug}>{postTitle}</a
         >
     </h3>
-    <p
-        class="col-span-1 text-lg text-pink-200 group-hover:text-pink-100 group-active:translate-y-0.5 hidden md:block pb-3"
-    >
-        {postDesc}
-    </p>
-    <p
-        class="col-span-1 text-xs md:text-sm text-pink-200/75 group-active:translate-y-0.5"
-    >
+    <Fragment
+        class="col-span-1 text-lg text-pink-200 group-hover:text-pink-100 hidden md:block pb-3"
+        set:html={postExcerpt}
+    />
+    <p class="col-span-1 text-xs md:text-sm text-pink-200/75">
         {postLectureTime}
     </p>
     <img
-        class="row-span-4 rounded-lg ring-2 ring-pink-900/25 group-hover:brightness-110 group-active:translate-y-0.5"
+        class="w-full h-[120px] object-cover row-span-4 rounded-lg ring-2 ring-pink-900/25 group-hover:brightness-110"
         width="120"
         height="120"
-        src={postImage}
+        src={postImage ?? "/public/images/default.png"}
         alt=`Imagen destacada de "${postTitle}"`
     />
 </article>

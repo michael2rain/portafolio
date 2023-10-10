@@ -2,7 +2,7 @@
 import Layout from "../layouts/layout.astro";
 import Content from "../layouts/containers/content.astro";
 
-import Hero from "../components/sections/heroPortafolio.astro";
+import HeroPortafolio from "../components/sections/heroPortafolio.astro";
 import ProyectGalery from "../components/cards/proyectGalery.astro";
 import CartIcon from "../components/icons/cart.astro";
 import PluginIcon from "../components/icons/plugin.astro";
@@ -13,7 +13,7 @@ import PluginIcon from "../components/icons/plugin.astro";
     pageTitle="Portafolio"
     pageDescription="Listado de todos los proyectos relevantes"
 >
-    <Hero
+    <HeroPortafolio
         heading="Portafolio"
         description="En 2023, colaboré en diferentes proyectos que me ayudaron a mejorar mis habilidades, aquí breve un resumen."
     />
@@ -25,13 +25,12 @@ import PluginIcon from "../components/icons/plugin.astro";
                     Plugins para WordPress
                 </h2>
             </div>
-            <div class="flex flex-col gap-6 mb-7">
+            <div class="flex flex-col gap-6 mb-3 md:mb-5 lg:mb-7">
                 <ProyectGalery
                     className=""
-                    proyectCat="E-commerce"
                     proyectName="Naturista Express"
-                    proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
-                    proyectLink="#"
+                    proyectDesc="Una tienda que funciona con Woocommerce y es llevado a su máximo potencial."
+                    proyectLink="/portafolio/naturista-express/"
                     images={[
                         "/images/proyect_plus.png",
                         "/images/proyect_plus.png",
@@ -45,10 +44,9 @@ import PluginIcon from "../components/icons/plugin.astro";
                     E-Commerce
                 </h2>
             </div>
-            <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-6 mb-3 md:mb-5 lg:mb-7">
                 <ProyectGalery
                     className=""
-                    proyectCat="E-commerce"
                     proyectName="Naturista Express"
                     proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
                     proyectLink="#"
@@ -60,7 +58,6 @@ import PluginIcon from "../components/icons/plugin.astro";
                 />
                 <ProyectGalery
                     className=""
-                    proyectCat="E-commerce"
                     proyectName="Naturista Express"
                     proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
                     proyectLink="#"
