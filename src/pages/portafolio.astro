@@ -8,6 +8,7 @@ import ProyectGalery from "../components/cards/proyectGalery.astro";
 import CartIcon from "../components/icons/cart.astro";
 import PluginIcon from "../components/icons/plugin.astro";
 
+export const prerender = true;
 const data = await wpquery({
     query: `
     query portafolioPage {
