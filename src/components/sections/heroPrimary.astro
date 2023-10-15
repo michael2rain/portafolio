@@ -2,8 +2,10 @@
 interface Props {
     heading: string;
     description: string;
+    linkedin: string;
+    github: string;
 }
-const { heading, description } = Astro.props;
+const { heading, description, linkedin, github } = Astro.props;
 
 import LinkedinIcon from "../icons/linkedinIcon.astro";
 import GithubIcon from "../icons/githubIcon.astro";
@@ -58,8 +60,10 @@ import GithubIcon from "../icons/githubIcon.astro";
                                 <GithubIcon />
                                 <a
                                     class="text-sm lg:text-base hover:underline"
-                                    href="#"
-                                    title="Ir al perfil de GitHub"
+                                    href={github}
+                                    target="_blank"
+                                    rel="noreferrer nofollow"
+                                    title="Visitar perfil de GitHub"
                                 >
                                     Github
                                 </a>
@@ -68,8 +72,10 @@ import GithubIcon from "../icons/githubIcon.astro";
                                 <LinkedinIcon />
                                 <a
                                     class="text-sm lg:text-base hover:underline"
-                                    href="#"
-                                    title="Ir al perfil de Linkedin"
+                                    href={linkedin}
+                                    target="_blank"
+                                    rel="noreferrer nofollow"
+                                    title="Visitar perfil de Linkedin"
                                 >
                                     Linkedin
                                 </a>

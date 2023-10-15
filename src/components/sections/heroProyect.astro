@@ -2,11 +2,20 @@
 interface Props {
     heading: string;
     description: string;
+    proyectCategory: string;
+    proyectFeatureImg: string;
+    proyectLink: string;
 }
-const { heading, description } = Astro.props;
+const {
+    heading,
+    description,
+    proyectCategory,
+    proyectFeatureImg,
+    proyectLink,
+} = Astro.props;
 
-import PrimaryButtonIcon from "../buttons/primaryIcon.astro";
-import ExternalLink from "../icons/externalLink.astro";
+import PrimaryButton from "../buttons/primary.astro";
+import CartIcon from "../icons/cart.astro";
 ---
 
 <section
@@ -19,17 +28,32 @@ import ExternalLink from "../icons/externalLink.astro";
             class="w-full md:w-[70%] flex flex-col gap-10 md:gap-0 lg:gap-14 md:p-0"
         >
             <div
-                class="w-full flex flex-1 flex-col gap-7 md:gap-10 px-6 md:px-0 lg:px-0 md:pb-12 lg:pb-12 xl:pb-16"
+                class="w-full flex flex-1 flex-col gap-6 px-6 md:px-0 lg:px-0 md:pb-12 lg:pb-12 xl:pb-16"
             >
+                <div class="flex flex-row items-center gap-2 md:gap-3">
+                    <CartIcon
+                        width={18}
+                        className="w-auto scale-90 md:scale-100 fill-pink-400/75 group-hover:fill-pink-400"
+                    />
+                    <em class="text-sm md:text-base text-pink-200 not-italic"
+                        >{proyectCategory}</em
+                    >
+                </div>
                 <h1
-                    class="text-pink-400 font-black font-title text-4xl md:text-5xl lg:text-5xl"
+                    class="text-pink-400 font-black font-title text-4xl md:text-5xl lg:text-5xl md:mb-3"
                 >
                     {heading}
                 </h1>
-                <p class="text-pink-100 text-xl md:text-2xl mb-3 md:mb-0">
-                    {description}
-                </p>
-                <PrimaryButtonIcon
+                <div
+                    class="text-pink-100 text-xl md:text-xl mb-3 md:mb-5 line-clamp-3"
+                >
+                    <Fragment set:html={description} />
+                </div>
+                <PrimaryButton
+                    buttonTypeLink
+                    link={proyectLink}
+                    linkTarget="_blank"
+                    linkRel="external noreferrer nofollow"
                     text="Visitar sitio web"
                     icon="ExternalLinkIcon"
                 />
@@ -37,8 +61,8 @@ import ExternalLink from "../icons/externalLink.astro";
         </div>
         <img
             class="lg:relative w-full md:w-[520px] lg:w-[55%] object-contain px-4 pr-7 md:p-0 md:translate-x-12 lg:translate-x-0"
-            src="/images/proyect-img.png"
-            alt="Portada del proyecto"
+            src={proyectFeatureImg}
+            alt=`Portada del proyecto ${heading}`
         />
     </div>
 </section>

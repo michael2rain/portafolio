@@ -1,6 +1,8 @@
 ---
+import PillLink from "../buttons/pillLink.astro";
+
 interface Props {
-    className: string;
+    className?: string;
     proyectName: string;
     proyectDesc: string;
     proyectLink: string;
@@ -8,8 +10,6 @@ interface Props {
 }
 const { proyectName, proyectDesc, className, proyectLink, images } =
     Astro.props;
-
-import PillLink from "../buttons/pillLink.astro";
 ---
 
 <article
@@ -21,27 +21,27 @@ import PillLink from "../buttons/pillLink.astro";
         <h3 class="text-xl md:text-2xl font-medium line-clamp-2">
             {proyectName}
         </h3>
-        <p class="text-base md:text-lg line-clamp-3 mb-3">
-            {proyectDesc}
-        </p>
+        <div class="text-base md:text-lg line-clamp-3 mb-3">
+            <Fragment set:html={proyectDesc} />
+        </div>
         <PillLink
             link={proyectLink}
-            className="w-fit hover:underline hover:decoration-dashed"
+            className="w-fit hover:underline hover:decoration-dashed after:content-[''] after:absolute after:inset-0 after:z-10"
             text="Leer más"
-            linkTitle="Visitar proyecto"
+            linkTitle={"Ver más de " + proyectName}
         />
     </div>
     <ul
         class="w-full flex flex-row gap-4 overflow-x-scroll lg:overflow-hidden md:max-h-full p-6 pb-3 md:p-0"
     >
         {
-            images.map((image) => (
+            images.map((sourceUrl) => (
                 <li class="flex-none flex items-end bg-velvet/50 rounded-xl h-fit w-[260px] p-3 pb-0 pr-4">
                     <img
                         class="grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100  md:block md:w-[320px] lg:w-[350px] xl:w-full h-full object-cover bottom-0 transition-all"
                         width="213"
                         height="auto"
-                        src={image}
+                        src={sourceUrl}
                         alt=""
                     />
                 </li>

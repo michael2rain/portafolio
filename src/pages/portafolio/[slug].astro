@@ -1,0 +1,103 @@
+---
+import { wpquery } from "../../data/wordpress";
+
+import Layout from "../../layouts/layout.astro";
+import Content from "../../layouts/containers/content.astro";
+import HeroProyect from "../../components/sections/heroProyect.astro";
+import GaleryLigthbox from "../../components/sections/galeryLigthbox.svelte";
+
+export const getStaticPaths = async () => {
+    const data = await wpquery({
+        query: `
+        query proyectPage {
+            proyects {
+                nodes {
+                    slug
+                    title
+                    excerpt
+                    content
+                    featuredImage {
+                        node {
+                            mediaItemUrl
+                        }
+                    }
+                    proyectCategories {
+                        nodes {
+                            name
+                        }
+                    }
+                    proyectLinks {
+                        figmaUrl
+                        githubUrl
+                        urlDelSitioWeb
+                    }
+                    proyectUsedTools {
+                        nodes {
+                            name
+                        }
+                    }
+                    screenshots {
+                        images {
+                            ... on MediaItem {
+                                id
+                                sourceUrl(size: LARGE)
+                                mediaItemUrl
+                                altText
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        `,
+    });
+
+    return data.proyects.nodes.map((proyect: any) => {
+        return {
+            params: { slug: proyect.slug },
+            props: { proyect },
+        };
+    });
+};
+
+const { proyect } = Astro.props;
+---
+
+<Layout
+    title={proyect.title + " - Portafolio de Michael Barrera"}
+    pageTitle={proyect.title}
+    pageDescription={proyect.excerpt}
+>
+    <HeroProyect
+        heading={proyect.title}
+        description={proyect.excerpt}
+        proyectCategory={proyect.proyectCategories.nodes.map((name) => {
+            return name.name;
+        })[0]}
+        proyectFeatureImg={proyect.featuredImage.node.mediaItemUrl}
+        proyectLink={proyect.proyectLinks.urlDelSitioWeb}
+    />
+    <Content className="gap-10">
+        <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+            <h2 class="w-[30%] flex-1 text-3xl font-medium">Características</h2>
+            <div
+                class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full"
+            >
+                <Fragment set:html={proyect.content} />
+            </div>
+        </div>
+        {
+            proyect.screenshots.images ? (
+                <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+                    <h2 class="w-[30%] flex-1 text-3xl font-medium">
+                        Screenshots
+                    </h2>
+                    <GaleryLigthbox
+                        client:visible
+                        images={proyect.screenshots.images}
+                    />
+                </div>
+            ) : null
+        }
+    </Content>
+</Layout>

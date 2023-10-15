@@ -1,11 +1,60 @@
 ---
+import { wpquery } from "../data/wordpress";
+
 import Layout from "../layouts/layout.astro";
 import Content from "../layouts/containers/content.astro";
-
 import HeroPortafolio from "../components/sections/heroPortafolio.astro";
 import ProyectGalery from "../components/cards/proyectGalery.astro";
 import CartIcon from "../components/icons/cart.astro";
 import PluginIcon from "../components/icons/plugin.astro";
+
+const data = await wpquery({
+    query: `
+    query portafolioPage {
+        proyectCategories(where: {hideEmpty: true}) {
+            nodes {
+                name
+                proyects {
+                    nodes {
+                        slug
+                        title
+                        excerpt
+                        screenshots {
+                            images {
+                                ... on MediaItem {
+                                    id
+                                    sourceUrl(size: MEDIUM)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    `,
+});
+
+interface Categories {
+    name: string;
+    proyects: {
+        nodes: [];
+    };
+}
+
+interface Proyects {
+    slug: string;
+    title: string;
+    excerpt: string;
+    screenshots: {
+        images: [] | null;
+    };
+}
+
+interface ImageGalery {
+    id: string;
+    sourceUrl: string;
+}
 ---
 
 <Layout
@@ -19,55 +68,50 @@ import PluginIcon from "../components/icons/plugin.astro";
     />
     <Content>
         <section class="flex flex-col gap-8 md:px-6 lg:px-12 xl:px-0">
-            <div class="w-full md:w-fit flex flex-row items-center gap-4">
-                <PluginIcon className="fill-pink-400/60" width={30} />
-                <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
-                    Plugins para WordPress
-                </h2>
-            </div>
-            <div class="flex flex-col gap-6 mb-3 md:mb-5 lg:mb-7">
-                <ProyectGalery
-                    className=""
-                    proyectName="Naturista Express"
-                    proyectDesc="Una tienda que funciona con Woocommerce y es llevado a su máximo potencial."
-                    proyectLink="/portafolio/naturista-express/"
-                    images={[
-                        "/images/proyect_plus.png",
-                        "/images/proyect_plus.png",
-                        "/images/proyect_plus.png",
-                    ]}
-                />
-            </div>
-            <div class="w-full md:w-fit flex flex-row items-center gap-4">
-                <CartIcon className="fill-pink-400/60" width={30} />
-                <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
-                    E-Commerce
-                </h2>
-            </div>
-            <div class="flex flex-col gap-6 mb-3 md:mb-5 lg:mb-7">
-                <ProyectGalery
-                    className=""
-                    proyectName="Naturista Express"
-                    proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
-                    proyectLink="#"
-                    images={[
-                        "/images/proyect_plus.png",
-                        "/images/proyect_plus.png",
-                        "/images/proyect_plus.png",
-                    ]}
-                />
-                <ProyectGalery
-                    className=""
-                    proyectName="Naturista Express"
-                    proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
-                    proyectLink="#"
-                    images={[
-                        "/images/proyect_plus.png",
-                        "/images/proyect_plus.png",
-                        "/images/proyect_plus.png",
-                    ]}
-                />
-            </div>
+            {
+                data.proyectCategories.nodes.map((categories: Categories) => {
+                    return (
+                        <>
+                            <div class="w-full md:w-fit flex flex-row items-center gap-4">
+                                <PluginIcon
+                                    className="fill-pink-400/60"
+                                    width={30}
+                                />
+                                <h2 class="text-2xl md:text-3xl text-pink-50 font-medium">
+                                    {categories.name}
+                                </h2>
+                            </div>
+                            <div class="flex flex-col gap-6 mb-3 md:mb-5 lg:mb-7 pl-10 ml-3 border-l border-pink-100/5">
+                                {categories.proyects.nodes.map(
+                                    (proyect: Proyects) => {
+                                        if (!proyect) {
+                                            return [];
+                                        }
+                                        const images =
+                                            proyect.screenshots &&
+                                            proyect.screenshots.images
+                                                ? proyect.screenshots.images.map(
+                                                      (image: ImageGalery) =>
+                                                          image.sourceUrl,
+                                                  )
+                                                : Array(3).fill(
+                                                      "/images/default.png",
+                                                  );
+                                        return (
+                                            <ProyectGalery
+                                                proyectName={proyect.title}
+                                                proyectDesc={proyect.excerpt}
+                                                proyectLink={proyect.slug}
+                                                images={images}
+                                            />
+                                        );
+                                    },
+                                )}
+                            </div>
+                        </>
+                    );
+                })
+            }
         </section>
     </Content>
 </Layout>

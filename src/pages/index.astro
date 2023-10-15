@@ -1,18 +1,16 @@
 ---
+import { wpquery } from "../data/wordpress";
+import { readingTime } from "../utils/timeUtils";
+
 import Layout from "../layouts/layout.astro";
 import Content from "../layouts/containers/content.astro";
 import Hero from "../components/sections/heroPrimary.astro";
 import ProyectCard from "../components/cards/proyect.astro";
-import PostCard from "../components/cards/post.astro";
-
-import { formatDistanceStrict } from "date-fns";
-import { es } from "date-fns/locale";
-
-import { wpquery } from "../graphql/wordpress";
+import PostCard from "../components/cards/post.svelte";
 
 const data = await wpquery({
     query: `
-    query recentPost {
+    query data {
         posts {
             nodes {
                 slug
@@ -32,23 +30,27 @@ const data = await wpquery({
                 }
             }
         }
+        proyects(first: 2) {
+            nodes {
+                slug
+                title
+                excerpt
+                content
+                featuredImage {
+                    node {
+                        sourceUrl(size: MEDIUM_LARGE)
+                    }
+                }
+                proyectCategories {
+                    nodes {
+                        name
+                    }
+                }
+            }
+        }
     }
     `,
 });
-
-const dateFormat = (fecha) => {
-    const fechaBase = new Date(fecha);
-    const result = formatDistanceStrict(new Date(), fechaBase, { locale: es });
-    return `Hace ${result}`;
-};
-
-const readingTime = (content) => {
-    const wpm = 225;
-    const words = content.trim().split(/\s+/).length;
-    const time = Math.ceil(words / wpm);
-    console.log(time);
-    return time;
-};
 ---
 
 <Layout
@@ -59,6 +61,8 @@ const readingTime = (content) => {
     <Hero
         heading="Info"
         description="Entusiasta del código abierto, apasionado por el diseño de interfaces y la accesibilidad en la web."
+        linkedin="https://www.linkedin.com/in/michael-barrera-dev/"
+        github="https://github.com/michael2rain/"
     />
     <Content>
         <section
@@ -74,21 +78,27 @@ const readingTime = (content) => {
             >
                 <a
                     class="text-pink-200 hover:text-pink-100 underline-offset-2 decoration-dashed hover:underline"
-                    href="/portafolio">Visitar portafolio</a
+                    href="/portafolio/">Visitar portafolio</a
                 >
             </div>
-            <ProyectCard
-                className="basis-auto lg:basis-[calc(50%_-_14px)]"
-                proyectCat="WordPress Plugin"
-                proyectName="WooCommerce AdCombo Integration"
-                proyectDesc="Integración entre WooCommerce y la API de AdCombo, para crear pedidos y enviar la información del cliente en tiempo real."
-            />
-            <ProyectCard
-                className="basis-auto lg:basis-[calc(50%_-_14px)]"
-                proyectCat="E-commerce"
-                proyectName="Naturista Express"
-                proyectDesc="Tienda en línea con sincronización de pedidos vía API. Personalización de plantillas de Woocommerce como el carrito y checkout."
-            />
+            {
+                data.proyects.nodes.map((proyect: any) => {
+                    return (
+                        <ProyectCard
+                            className="basis-auto lg:basis-[calc(50%_-_14px)]"
+                            proyectSlug={"/portafolio/" + proyect.slug}
+                            proyectCat={
+                                proyect.proyectCategories.nodes.map((name) => {
+                                    return name.name;
+                                })[0]
+                            }
+                            proyectName={proyect.title}
+                            proyectDesc={proyect.excerpt}
+                            proyectImage={proyect.featuredImage.node.sourceUrl}
+                        />
+                    );
+                })
+            }
         </section>
         <section
             class="flex flex-row flex-wrap gap-5 md:gap-7 items-center md:p-6 lg:px-12 xl:p-0"
@@ -103,7 +113,7 @@ const readingTime = (content) => {
             >
                 <a
                     class="text-pink-200 hover:text-pink-100 underline-offset-2 decoration-dashed hover:underline"
-                    href="#">Visitar blog</a
+                    href="/blog/">Visitar blog</a
                 >
             </div>
             <div class="w-full flex flex-col gap-5 md:gap-7">
@@ -111,12 +121,13 @@ const readingTime = (content) => {
                     data.posts.nodes.map((post: any) => {
                         return (
                             <PostCard
+                                client:only
                                 postCat={
                                     post.categories.nodes.map((name) => {
                                         return name.name;
                                     })[0]
                                 }
-                                postDate={dateFormat(post.date)}
+                                postDate={post.date}
                                 postTitle={post.title}
                                 postExcerpt={post.excerpt}
                                 postSlug={post.slug}

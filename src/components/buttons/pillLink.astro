@@ -1,11 +1,13 @@
 ---
 interface Props {
+    className: string;
     text: string;
     link: string;
-    linkTitle: string;
-    className: string;
+    linkTarget?: "_blank" | "_self" | "_parent" | "_top";
+    linkTitle?: string;
+    linkRel?: string;
 }
-const { text, link, linkTitle, className } = Astro.props;
+const { className, text, link, linkTitle, linkRel, linkTarget } = Astro.props;
 
 import AngleIcon from "../icons/angle.svelte";
 ---
@@ -13,7 +15,9 @@ import AngleIcon from "../icons/angle.svelte";
 <a
     class=`${className} group text-pink-100 flex flex-row items-center gap-3 hover:text-pink-50 `
     href={link}
-    title=`Ir a ${linkTitle}`
+    title={linkTitle}
+    rel={linkRel}
+    target={linkTarget}
     >{text}
     <AngleIcon
         width={8}
