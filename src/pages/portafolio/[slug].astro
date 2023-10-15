@@ -6,6 +6,7 @@ import Content from "../../layouts/containers/content.astro";
 import HeroProyect from "../../components/sections/heroProyect.astro";
 import GaleryLigthbox from "../../components/sections/galeryLigthbox.svelte";
 
+export const prerender = true;
 export const getStaticPaths = async () => {
     const data = await wpquery({
         query: `
