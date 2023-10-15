@@ -11,6 +11,6 @@ export default defineConfig({
   build: {
     assets: '_[hash]'
   },
-  output: "server",
+  output: "static",
   adapter: cloudflare()
 });
