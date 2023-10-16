@@ -1,4 +1,3 @@
-export const prerender = true;
 interface WPGraphQLParams {
     query: string;
     variables?: object;

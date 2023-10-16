@@ -9,6 +9,7 @@ export default defineConfig({
   integrations: [tailwind(), svelte()],
   build: {
     site: 'https://michaelbarrera.dev/',
+    assets: '_assets'
   },
   output: "hybrid",
   adapter: cloudflare()

@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import { wpquery } from "../functions/wordpress";
 
 import Layout from "../layouts/BaseLayout.astro";
@@ -93,10 +91,10 @@ interface ImageGalery {
                                             proyect.screenshots.images
                                                 ? proyect.screenshots.images.map(
                                                       (image: ImageGalery) =>
-                                                          image.sourceUrl,
+                                                          image.sourceUrl
                                                   )
                                                 : Array(3).fill(
-                                                      "/images/default.png",
+                                                      "/images/default.png"
                                                   );
                                         return (
                                             <ProyectGalery
@@ -106,7 +104,7 @@ interface ImageGalery {
                                                 images={images}
                                             />
                                         );
-                                    },
+                                    }
                                 )}
                             </div>
                         </>
