@@ -3,9 +3,8 @@ interface Props {
     title: string;
     pageDescription: string;
     pageTitle: string;
-    stylesEnqueued?: string;
 }
-const { title, pageTitle, pageDescription, stylesEnqueued } = Astro.props;
+const { title, pageTitle, pageDescription } = Astro.props;
 
 import "@fontsource/ibm-plex-sans/300.css";
 import "@fontsource/ibm-plex-sans/400.css";
@@ -16,7 +15,7 @@ import "@fontsource/dela-gothic-one/400.css";
 import Header from "../components/header.svelte";
 import Footer from "../components/footer.astro";
 
-const currentPath = Astro.url.pathname;
+// const currentPath = Astro.url.pathname;
 ---
 
 <html lang="es">
@@ -28,19 +27,17 @@ const currentPath = Astro.url.pathname;
         <meta name="description" content={pageDescription} />
     </head>
     <body
-        style=`${stylesEnqueued}`
         class="bg-velvet text-velvet-50 selection:bg-velvet-800 selection:text-velvet-50"
     >
         <Header
             logoUrl="/favicon.png"
             pageName={pageTitle}
-            currentPathName={currentPath}
+            currentPathName="{currentPath}"
             client:load
         />
         <main class="w-full">
             <slot />
         </main>
         <Footer />
-        <slot name="equeueFooter" />
     </body>
 </html>
