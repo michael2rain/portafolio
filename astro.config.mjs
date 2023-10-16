@@ -11,6 +11,6 @@ export default defineConfig({
     site: 'https://michaelbarrera.dev/',
     assets: '_assets'
   },
-  output: "hybrid",
+  output: "server",
   adapter: cloudflare()
 });
