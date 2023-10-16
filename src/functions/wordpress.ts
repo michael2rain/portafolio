@@ -5,7 +5,7 @@ interface WPGraphQLParams {
 }
 
 export async function wpquery({ query, variables = {} }: WPGraphQLParams) {
-    const res = await fetch('https://wpress.michaelbarrera.dev/graphql', {
+    const res = await fetch(`${import.meta.env.WP_URL}`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
