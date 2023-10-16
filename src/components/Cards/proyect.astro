@@ -7,9 +7,14 @@ interface Props {
     proyectImage: string;
     className: string;
 }
-const { proyectSlug, proyectCat, proyectName, proyectDesc, proyectImage } =
-    Astro.props;
-let { className } = Astro.props;
+const {
+    proyectSlug,
+    proyectCat,
+    proyectName,
+    proyectDesc,
+    proyectImage,
+    className,
+} = Astro.props;
 
 import CartIcon from "../icons/cart.astro";
 import PillLink from "../buttons/pillLink.astro";
