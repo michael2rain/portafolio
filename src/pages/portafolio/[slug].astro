@@ -5,8 +5,8 @@ import { wpquery } from "../../functions/wordpress";
 
 import Layout from "../../layouts/BaseLayout.astro";
 import Content from "../../layouts/containers/BaseContent.astro";
-import HeroProyect from "../../components/sections/heroProyect.astro";
-import GaleryLigthbox from "../../components/sections/galeryLigthbox.svelte";
+import HeroProyect from "../../components/sections/HeroProyect.astro";
+import GaleryLigthbox from "../../components/sections/GaleryLigthbox.svelte";
 
 export const getStaticPaths = async () => {
     const data = await wpquery({

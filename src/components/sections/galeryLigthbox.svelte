@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
-    import AngleIcon from "../icons/angle.svelte";
-    import CloseIcon from "../icons/close.svelte";
+    import AngleIcon from "../icons/Angle.svelte";
+    import CloseIcon from "../icons/Close.svelte";
 
     interface Image {
         id?: string;

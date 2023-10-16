@@ -5,9 +5,9 @@ import { wpquery } from "../functions/wordpress";
 
 import Layout from "../layouts/BaseLayout.astro";
 import Content from "../layouts/containers/BaseContent.astro";
-import HeroPortafolio from "../components/sections/heroPortafolio.astro";
-import ProyectGalery from "../components/cards/proyectGalery.astro";
-import PluginIcon from "../components/icons/plugin.astro";
+import HeroPortafolio from "../components/sections/HeroPortafolio.astro";
+import ProyectGalery from "../components/cards/ProyectGalery.astro";
+import PluginIcon from "../components/icons/Plugin.astro";
 
 const data = await wpquery({
     query: `

@@ -1,6 +1,6 @@
 <script>
-  import NavItem from "./nav/nav-item.svelte";
-  import HamburguerIcons from "./icons/hamburguer.svelte";
+  import NavLink from "./nav/NavLink.svelte";
+  import HamburguerIcons from "./icons/Hamburguer.svelte";
 
   export let currentPathName;
   export let logoUrl;
@@ -52,19 +52,19 @@
       <ul
         class="w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
       >
-        <NavItem
+        <NavLink
           text="Información"
           link="/"
           linkTitle="Ir al inicio"
           activeUrl={currentPathName}
         />
-        <NavItem
+        <NavLink
           text="Portafolio"
           link="/portafolio/"
           linkTitle="Visitar el portafolio"
           activeUrl={currentPathName}
         />
-        <NavItem
+        <NavLink
           text="Blog"
           link="/blog/"
           linkTitle="Ir al blog"
