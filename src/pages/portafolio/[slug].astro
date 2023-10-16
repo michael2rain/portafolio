@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { wpquery } from "../../data/wordpress";
 
 import Layout from "../../layouts/layout.astro";
@@ -6,7 +8,6 @@ import Content from "../../layouts/containers/content.astro";
 import HeroProyect from "../../components/sections/heroProyect.astro";
 import GaleryLigthbox from "../../components/sections/galeryLigthbox.svelte";
 
-export const prerender = false;
 export const getStaticPaths = async () => {
     const data = await wpquery({
         query: `

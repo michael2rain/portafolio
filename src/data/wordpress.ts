@@ -2,7 +2,8 @@ interface WPGraphQLParams {
     query: string;
     variables?: object;
 }
-export const prerender = true
+export const prerender = true;
+
 export async function wpquery({ query, variables = {} }: WPGraphQLParams) {
     const res = await fetch('https://wpress.michaelbarrera.dev/graphql', {
         method: 'post',
