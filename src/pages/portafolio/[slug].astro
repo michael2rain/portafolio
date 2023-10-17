@@ -1,81 +1,85 @@
 ---
-import { wpquery } from "../../functions/wordpress";
+import { fetchProyects } from "../../functions/wordpress";
 
 import Layout from "../../layouts/BaseLayout.astro";
 import Content from "../../layouts/containers/BaseContent.astro";
 import HeroProyect from "../../components/sections/HeroProyect.astro";
 import GaleryLigthbox from "../../components/sections/GaleryLigthbox.svelte";
 
-export const getStaticPaths = async () => {
-    const data = await wpquery({
-        query: `
-        query proyectPage {
-            proyects {
-                nodes {
-                    slug
-                    title
-                    excerpt
-                    content
-                    featuredImage {
-                        node {
+const data = await fetchProyects({
+    query: `
+    query proyectPage {
+        proyects {
+            nodes {
+                slug
+                title
+                excerpt
+                content
+                featuredImage {
+                    node {
+                        mediaItemUrl
+                    }
+                }
+                proyectCategories {
+                    nodes {
+                        name
+                    }
+                }
+                proyectLinks {
+                    figmaUrl
+                    githubUrl
+                    urlDelSitioWeb
+                }
+                proyectUsedTools {
+                    nodes {
+                        name
+                    }
+                }
+                screenshots {
+                    images {
+                        ... on MediaItem {
+                            id
+                            sourceUrl(size: LARGE)
                             mediaItemUrl
-                        }
-                    }
-                    proyectCategories {
-                        nodes {
-                            name
-                        }
-                    }
-                    proyectLinks {
-                        figmaUrl
-                        githubUrl
-                        urlDelSitioWeb
-                    }
-                    proyectUsedTools {
-                        nodes {
-                            name
-                        }
-                    }
-                    screenshots {
-                        images {
-                            ... on MediaItem {
-                                id
-                                sourceUrl(size: LARGE)
-                                mediaItemUrl
-                                altText
-                            }
+                            altText
                         }
                     }
                 }
             }
         }
-        `,
-    });
+    }
+    `,
+});
 
-    return data.proyects.nodes.map((proyect: any) => {
-        return {
-            params: { slug: proyect.slug },
-            props: { proyect },
-        };
-    });
-};
+const { slug } = Astro.params;
 
-const { proyect } = Astro.props;
+const proyect = data.find((post) => post.slug === slug);
+if (!proyect) return Astro.redirect("/404");
+
+const {
+    title,
+    content,
+    excerpt,
+    proyectCategories,
+    featuredImage,
+    proyectLinks,
+    screenshots,
+} = proyect;
 ---
 
 <Layout
-    title={proyect.title + " - Portafolio de Michael Barrera"}
-    pageTitle={proyect.title}
-    pageDescription={proyect.excerpt}
+    title={title + " - Portafolio de Michael Barrera"}
+    pageTitle={title}
+    pageDescription={excerpt}
 >
     <HeroProyect
-        heading={proyect.title}
-        description={proyect.excerpt}
-        proyectCategory={proyect.proyectCategories.nodes.map((name) => {
+        heading={title}
+        description={excerpt}
+        proyectCategory={proyectCategories.nodes.map((name) => {
             return name.name;
         })[0]}
-        proyectFeatureImg={proyect.featuredImage.node.mediaItemUrl}
-        proyectLink={proyect.proyectLinks.urlDelSitioWeb}
+        proyectFeatureImg={featuredImage.node.mediaItemUrl}
+        proyectLink={proyectLinks.urlDelSitioWeb}
     />
     <Content className="gap-10">
         <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
@@ -83,18 +87,18 @@ const { proyect } = Astro.props;
             <div
                 class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full"
             >
-                <Fragment set:html={proyect.content} />
+                <Fragment set:html={content} />
             </div>
         </div>
         {
-            proyect.screenshots.images ? (
+            screenshots.images ? (
                 <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
                     <h2 class="w-[30%] flex-1 text-3xl font-medium">
                         Screenshots
                     </h2>
                     <GaleryLigthbox
                         client:visible
-                        images={proyect.screenshots.images}
+                        images={screenshots.images}
                     />
                 </div>
             ) : null

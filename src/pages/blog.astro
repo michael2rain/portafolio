@@ -1,10 +1,67 @@
 ---
+import { wpquery } from "../functions/wordpress";
+import { readingTime } from "../utils/timeUtils";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BaseContent from "../layouts/containers/BaseContent.astro";
+import HeroBlog from "../components/sections/HeroBlog.astro";
+import PostCard from "../components/cards/Post.svelte";
+
+const data = await wpquery({
+    query: `
+    query data {
+        posts {
+            nodes {
+                slug
+                date
+                title
+                excerpt
+                content
+                categories {
+                    nodes {
+                        name
+                    }
+                }
+                featuredImage {
+                    node {
+                        sourceUrl(size: MEDIUM)
+                    }
+                }
+            }
+        }
+    }
+    `,
+});
 ---
 
 <BaseLayout title="Blog" pageDescription="Empty" pageTitle="Blog">
+    <HeroBlog heading="Blog" description="" />
     <BaseContent>
-        <h2 class="text-2xl">Hola desde el blog</h2>
+        <section
+            class="flex flex-row flex-wrap gap-5 md:gap-7 items-center md:p-6 lg:px-12 xl:p-0"
+        >
+            <div class="w-full flex flex-col gap-5 md:gap-7">
+                {
+                    data.posts.nodes.map((post: any) => {
+                        return (
+                            <PostCard
+                                client:only
+                                postCat={
+                                    post.categories.nodes.map((name) => {
+                                        return name.name;
+                                    })[0]
+                                }
+                                postDate={post.date}
+                                postTitle={post.title}
+                                postExcerpt={post.excerpt}
+                                postSlug={post.slug}
+                                postLectureTime={readingTime(post.content)}
+                                postImage={post.featuredImage?.node.sourceUrl}
+                            />
+                        );
+                    })
+                }
+            </div>
+        </section>
     </BaseContent>
 </BaseLayout>
