@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import BaseContent from "../layouts/containers/BaseContent.astro";
+import Primary from "../components/buttons/Primary.astro";
+---
+
+<style>
+    section {
+        background-image: repeating-radial-gradient(
+            circle at 22% 22%,
+            #33001a,
+            black 0.00085px
+        );
+        animation: tv-static 50s linear infinite;
+    }
+
+    @keyframes tv-static {
+        0% {
+            background-size: 100% 100%;
+        }
+        50% {
+            background-size: 300% 300%;
+        }
+        100% {
+            background-size: 100% 100%;
+        }
+    }
+</style>
+
+<Layout
+    title="Error 404"
+    pageTitle="Error 404"
+    pageDescription="Error 404"
+    footer={false}
+>
+    <section class="w-full h-[calc(100vh_-_56px)] flex">
+        <div class="w-full flex flex-col items-center">
+            <div
+                class="w-full md:w-[550px] h-[80vh] 2xl:h-[calc(100vh_-_300px)] flex flex-col gap-6 justify-center items-center px-6"
+            >
+                <h1
+                    class="text-pink-400 font-black font-title text-4xl md:text-5xl lg:text-6xl"
+                >
+                    Error 404
+                </h1>
+                <h2
+                    class="text-xl md:text-2xl text-pink-200 text-center mb-5 md:mb-6"
+                >
+                    La dirección a la que intentas acceder, no existe, o fue
+                    transferida a otro lugar.
+                </h2>
+                <Primary text="Volver al inicio" link="/" buttonTypeLink />
+            </div>
+        </div>
+    </section>
+</Layout>

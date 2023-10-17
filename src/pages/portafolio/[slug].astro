@@ -53,7 +53,7 @@ const data = await fetchProyects({
 
 const { slug } = Astro.params;
 
-const proyect = data.find((post) => post.slug === slug);
+const proyect = data.find((proyect) => proyect.slug === slug);
 if (!proyect) return Astro.redirect("/404");
 
 const {
