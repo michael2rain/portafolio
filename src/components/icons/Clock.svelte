@@ -1,0 +1,22 @@
+<script lang="ts">
+    interface $$Props {
+        width: number;
+        className?: string;
+    }
+
+    export let width = 0;
+    export let className = "";
+</script>
+
+<svg
+    class={className}
+    {width}
+    height={width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <path
+        d="M19 3H5V5H3V19H5V21H19V19H21V5H19V3ZM19 5V19H5V5H19ZM11 7H13V13H17V15H11V7Z"
+    />
+</svg>

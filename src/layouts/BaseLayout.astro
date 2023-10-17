@@ -5,6 +5,7 @@ interface Props {
     pageTitle: string;
     header?: boolean;
     footer?: boolean;
+    className?: string;
 }
 const {
     title,
@@ -12,6 +13,7 @@ const {
     pageDescription,
     header = true,
     footer = true,
+    className = "",
 } = Astro.props;
 
 import "@fontsource/ibm-plex-sans/300.css";
@@ -35,7 +37,7 @@ const currentPath = Astro.url.pathname;
         <meta name="description" content={pageDescription} />
     </head>
     <body
-        class="bg-velvet text-velvet-50 selection:bg-velvet-800 selection:text-velvet-50"
+        class=`bg-velvet text-velvet-50 selection:bg-velvet-800 selection:text-velvet-50 ${className}`
     >
         {
             header ? (

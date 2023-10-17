@@ -1,20 +1,35 @@
 ---
 import { fetchPosts } from "../../functions/wordpress";
+import { readingTime } from "../../utils/timeUtils";
+import { dateFormatMonth } from "../../utils/timeUtils";
 
 import Layout from "../../layouts/BaseLayout.astro";
 import Content from "../../layouts/containers/BaseContent.astro";
+import IconClock from "../../components/icons/Clock.svelte";
 
 const data = await fetchPosts({
     query: `
-        query posts {
-            posts {
-                nodes {
-                    slug
-                    title
-                    content
+    query posts {
+        posts {
+            nodes {
+                slug
+                date
+                title
+                content
+                excerpt
+                categories {
+                    nodes {
+                        name
+                    }
                 }
+                featuredImage {
+                    node {
+                        sourceUrl(size: LARGE)
+                    }
+                }    
             }
         }
+    }
     `,
 });
 
@@ -23,16 +38,49 @@ const { slug } = Astro.params;
 const post = data.find((post) => post.slug === slug);
 if (!post) return Astro.redirect("/404");
 
-const { title, content } = post;
+const { title, content, categories, date, excerpt, featuredImage } = post;
 ---
 
-<Layout title="" pageTitle="" pageDescription="">
-    <Content className="gap-10">
-        <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
-            <h1 class="w-[30%] flex-1 text-3xl font-medium">{title}</h1>
+<Layout title={title} pageTitle={title} pageDescription={excerpt}>
+    <Content>
+        <div class="absolute inset-0 mix-blend-multiply">
+            <img
+                class="w-full h-[850px] object-cover inset-0"
+                src={featuredImage?.node.sourceUrl}
+                alt=""
+            />
         </div>
-        <div class="prose">
-            <Fragment set:html={content} />
+
+        <div class="w-[90%] flex flex-col gap-16 z-10">
+            <div class="">
+                <div class="flex flex-row items-center gap-5 mb-7">
+                    <p class="text-2xl font-medium text-pink-200">
+                        {
+                            categories.nodes.map((names) => {
+                                return names.name;
+                            })
+                        }
+                    </p>
+                    /
+                    <p class="text-xl font-medium text-pink-200/70">
+                        {dateFormatMonth(date)}
+                    </p>
+                </div>
+
+                <h1 class="flex-1 text-5xl font-medium text-pink-100 mb-6">
+                    {title}
+                </h1>
+                <div class="flex flex-row items-center gap-3">
+                    <IconClock width={16} className="fill-pink-200/90" />
+                    <p class="text-pink-200/90">{readingTime(content)}</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-pink prose-lg prose-headings:font-semibold p-10 rounded-xl prose-headings:text-pink-100 prose-p:text-pink-100/90 prose-pre:bg-velvet [&>figure>div>iframe]:w-full"
+            >
+                <Fragment set:html={content} />
+            </div>
         </div>
     </Content>
 </Layout>

@@ -1,10 +1,17 @@
 import formatDistanceStrict from 'date-fns/formatDistanceStrict/index.js';
+import format from 'date-fns/format';
 import es from "date-fns/locale/es/index.js";
 
-export const dateFormat = (fecha: string) => {
+export const dateFormatDistance = (fecha: string) => {
     const fechaBase = new Date(fecha);
     const result = formatDistanceStrict(new Date(), fechaBase, { locale: es });
     return `Hace ${result}`;
+};
+
+export const dateFormatMonth = (fecha: string) => {
+    const fechaBase = new Date(fecha);
+    const result = format(fechaBase, 'PP', { locale: es })
+    return result;
 };
 
 export const readingTime = (content: string) => {

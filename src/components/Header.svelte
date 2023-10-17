@@ -35,7 +35,9 @@
         />
       </a>
       <span class="text-sm md:text-base">/</span>
-      <p class="w-full text-sm md:text-base text-pink-100 font-medium">
+      <p
+        class="w-[50%] text-sm md:text-base text-pink-100 font-medium line-clamp-1"
+      >
         {pageName}
       </p>
     </picture>

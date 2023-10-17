@@ -9,7 +9,7 @@
         postImage: string;
     }
 
-    import { dateFormat } from "../../utils/timeUtils";
+    import { dateFormatDistance } from "../../utils/timeUtils";
 
     export let postTitle = "";
     export let postCat = "";
@@ -40,7 +40,7 @@
         >
         <span class="text-pink-200/75 text-sm md:text-base">-</span>
         <p class="grow text-pink-200/75 text-sm md:text-base line-clamp-1">
-            {dateFormat(postDate)}
+            {dateFormatDistance(postDate)}
         </p>
     </div>
     <h3
