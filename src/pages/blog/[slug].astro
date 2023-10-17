@@ -41,9 +41,25 @@ if (!post) return Astro.redirect("/404");
 const { title, content, categories, date, excerpt, featuredImage } = post;
 ---
 
+<style>
+    #featureImg::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: radial-gradient(
+            93.83% 89.71% at 36.36% 11.33%,
+            rgba(14, 1, 7, 0.9) 0%,
+            #0e0107 100%
+        );
+    }
+</style>
+
 <Layout title={title} pageTitle={title} pageDescription={excerpt}>
     <Content>
-        <div class="absolute inset-0 mix-blend-multiply">
+        <div id="featureImg" class="absolute inset-0 h-[850px]">
             <img
                 class="w-full h-[850px] object-cover inset-0"
                 src={featuredImage?.node.sourceUrl}
@@ -51,10 +67,12 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
             />
         </div>
 
-        <div class="w-[90%] flex flex-col gap-16 z-10">
-            <div class="">
-                <div class="flex flex-row items-center gap-5 mb-7">
-                    <p class="text-2xl font-medium text-pink-200">
+        <div
+            class="w-full lg:w-[90%] flex flex-col gap-10 md:gap-16 z-10 md:p-6"
+        >
+            <div class="p-3 md:p-0">
+                <div class="flex flex-row items-center gap-5 mb-5 md:mb-7">
+                    <p class="text-xl md:text-2xl font-medium text-pink-200">
                         {
                             categories.nodes.map((names) => {
                                 return names.name;
@@ -62,12 +80,14 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
                         }
                     </p>
                     /
-                    <p class="text-xl font-medium text-pink-200/70">
+                    <p class="text-lg md:text-xl font-medium text-pink-200/70">
                         {dateFormatMonth(date)}
                     </p>
                 </div>
 
-                <h1 class="flex-1 text-5xl font-medium text-pink-100 mb-6">
+                <h1
+                    class="flex-1 text-3xl lg:text-5xl font-medium text-pink-100 mb-6"
+                >
                     {title}
                 </h1>
                 <div class="flex flex-row items-center gap-3">
@@ -77,7 +97,7 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
             </div>
 
             <div
-                class="bg-pink prose-lg prose-headings:font-semibold p-10 rounded-xl prose-headings:text-pink-100 prose-p:text-pink-100/90 prose-pre:bg-velvet [&>figure>div>iframe]:w-full"
+                class="bg-pink prose-lg break-words prose-headings:font-semibold prose-headings:text-2xl md:prose-headings:text-3xl p-5 md:p-10 rounded-xl prose-headings:text-pink-100 prose-p:text-pink-100/90 prose-pre:bg-velvet prose-pre:overflow-auto [&>figure>div>iframe]:w-full"
             >
                 <Fragment set:html={content} />
             </div>
