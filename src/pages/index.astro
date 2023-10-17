@@ -130,7 +130,7 @@ const data = await wpquery({
                                 postDate={post.date}
                                 postTitle={post.title}
                                 postExcerpt={post.excerpt}
-                                postSlug={post.slug}
+                                postSlug={"/blog/" + post.slug}
                                 postLectureTime={readingTime(post.content)}
                                 postImage={post.featuredImage?.node.sourceUrl}
                             />
