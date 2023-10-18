@@ -11,6 +11,9 @@ export default defineConfig({
     site: 'https://michaelbarrera.dev/',
     assets: '_assets'
   },
+  image: {
+    domains: ['media.michaelbarrera.dev'],
+  },
   output: "server",
   adapter: cloudflare()
 });

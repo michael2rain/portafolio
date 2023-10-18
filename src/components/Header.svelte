@@ -55,7 +55,7 @@
         class="w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
       >
         <NavLink
-          text="Información"
+          text="Inicio"
           link="/"
           linkTitle="Ir al inicio"
           activeUrl={currentPathName}

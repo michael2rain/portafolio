@@ -8,9 +8,9 @@ export const dateFormatDistance = (fecha: string) => {
     return `Hace ${result}`;
 };
 
-export const dateFormatMonth = (fecha: string) => {
+export const dateFormat = (fecha: string, formatType: string) => {
     const fechaBase = new Date(fecha);
-    const result = format(fechaBase, 'PP', { locale: es })
+    const result = format(fechaBase, formatType, { locale: es })
     return result;
 };
 

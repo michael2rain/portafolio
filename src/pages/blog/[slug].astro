@@ -1,7 +1,7 @@
 ---
 import { fetchPosts } from "../../functions/wordpress";
 import { readingTime } from "../../utils/timeUtils";
-import { dateFormatMonth } from "../../utils/timeUtils";
+import { dateFormat } from "../../utils/timeUtils";
 
 import Layout from "../../layouts/BaseLayout.astro";
 import Content from "../../layouts/containers/BaseContent.astro";
@@ -59,18 +59,18 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
 
 <Layout title={title} pageTitle={title} pageDescription={excerpt}>
     <Content>
-        <div id="featureImg" class="absolute inset-0 h-[850px]">
+        <section id="featureImg" class="absolute inset-0 h-[850px]">
             <img
                 class="w-full h-[850px] object-cover inset-0"
                 src={featuredImage?.node.sourceUrl}
                 alt=""
             />
-        </div>
+        </section>
 
-        <div
+        <article
             class="w-full lg:w-[90%] flex flex-col gap-10 md:gap-16 z-10 md:p-6"
         >
-            <div class="p-3 md:p-0">
+            <header class="p-3 md:p-0">
                 <div class="flex flex-row items-center gap-5 mb-5 md:mb-7">
                     <p class="text-xl md:text-2xl font-medium text-pink-200">
                         {
@@ -80,9 +80,12 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
                         }
                     </p>
                     /
-                    <p class="text-lg md:text-xl font-medium text-pink-200/70">
-                        {dateFormatMonth(date)}
-                    </p>
+                    <time
+                        datetime={date}
+                        class="text-lg md:text-xl font-medium text-pink-200/70"
+                    >
+                        {dateFormat(date, "PP")}
+                    </time>
                 </div>
 
                 <h1
@@ -90,17 +93,17 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
                 >
                     {title}
                 </h1>
-                <div class="flex flex-row items-center gap-3">
+                <p class="flex flex-row items-center gap-3 text-pink-200/90">
                     <IconClock width={16} className="fill-pink-200/90" />
-                    <p class="text-pink-200/90">{readingTime(content)}</p>
-                </div>
-            </div>
+                    {readingTime(content)}
+                </p>
+            </header>
 
-            <div
+            <main
                 class="bg-pink prose-lg break-words prose-headings:font-semibold prose-headings:text-2xl md:prose-headings:text-3xl p-5 md:p-10 rounded-xl prose-headings:text-pink-100 prose-p:text-pink-100/90 prose-pre:bg-velvet prose-pre:overflow-auto [&>figure>div>iframe]:w-full"
             >
                 <Fragment set:html={content} />
-            </div>
-        </div>
+            </main>
+        </article>
     </Content>
 </Layout>
