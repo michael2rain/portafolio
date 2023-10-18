@@ -1,4 +1,6 @@
 ---
+import LinkedinIcon from "../icons/LinkedinIcon.astro";
+import GithubIcon from "../icons/GithubIcon.astro";
 interface Props {
     heading: string;
     description: string;
@@ -6,9 +8,6 @@ interface Props {
     github: string;
 }
 const { heading, description, linkedin, github } = Astro.props;
-
-import LinkedinIcon from "../icons/LinkedinIcon.astro";
-import GithubIcon from "../icons/GithubIcon.astro";
 ---
 
 <section
