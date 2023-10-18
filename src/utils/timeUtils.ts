@@ -1,5 +1,5 @@
 import formatDistanceStrict from 'date-fns/formatDistanceStrict/index.js';
-import format from 'date-fns/format';
+import format from 'date-fns/format/index.js';
 import es from "date-fns/locale/es/index.js";
 
 export const dateFormatDistance = (fecha: string) => {
