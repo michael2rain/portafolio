@@ -22,10 +22,10 @@ import "@fontsource/ibm-plex-sans/500.css";
 import "@fontsource/ibm-plex-sans/600.css";
 import "@fontsource/dela-gothic-one/400.css";
 
-import Header from "../components/Header.svelte";
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const currentPath = Astro.url.pathname;
+const urlPathname = Astro.url.pathname;
 ---
 
 <html lang="es">
@@ -41,12 +41,7 @@ const currentPath = Astro.url.pathname;
     >
         {
             header ? (
-                <Header
-                    logoUrl="/favicon.png"
-                    pageName={pageTitle}
-                    currentPathName={currentPath}
-                    client:load
-                />
+                <Header pageName={pageTitle} currentPath={urlPathname} />
             ) : (
                 ""
             )

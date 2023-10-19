@@ -15,7 +15,7 @@ const data = await wpquery({
     query data {
         posts {
             nodes {
-                slug
+                uri
                 date
                 title
                 excerpt
@@ -27,14 +27,14 @@ const data = await wpquery({
                 }
                 featuredImage {
                     node {
-                        sourceUrl(size: MEDIUM)
+                        sourceUrl(size: THUMBNAIL)
                     }
                 }
             }
         }
         proyects(first: 2) {
             nodes {
-                slug
+                uri
                 title
                 excerpt
                 content
@@ -88,7 +88,7 @@ const data = await wpquery({
                     return (
                         <ProyectCard
                             className="basis-auto lg:basis-[calc(50%_-_14px)]"
-                            proyectSlug={"/portafolio/" + proyect.slug}
+                            proyectSlug={proyect.uri}
                             proyectCat={
                                 proyect.proyectCategories.nodes.map((name) => {
                                     return name.name;
@@ -132,9 +132,11 @@ const data = await wpquery({
                                 postDate={post.date}
                                 postTitle={post.title}
                                 postExcerpt={post.excerpt}
-                                postSlug={"/blog/" + post.slug}
+                                postSlug={post.uri}
                                 postLectureTime={readingTime(post.content)}
-                                postImage={post.featuredImage?.node.sourceUrl}
+                                postUrlImage={
+                                    post.featuredImage?.node.sourceUrl
+                                }
                             />
                         );
                     })

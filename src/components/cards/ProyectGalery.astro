@@ -1,5 +1,6 @@
 ---
 import PillLink from "../buttons/PillLink.astro";
+import { Image } from "astro:assets";
 
 interface Props {
     className?: string;
@@ -37,10 +38,10 @@ const { proyectName, proyectDesc, className, proyectLink, images } =
         {
             images.map((sourceUrl) => (
                 <li class="flex-none flex items-end bg-velvet/50 rounded-xl h-fit w-[260px] p-3 pb-0 pr-4">
-                    <img
+                    <Image
                         class="grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100  md:block md:w-[320px] lg:w-[350px] xl:w-full h-full object-cover bottom-0 transition-all"
                         width="213"
-                        height="auto"
+                        height="175"
                         src={sourceUrl}
                         alt=""
                     />

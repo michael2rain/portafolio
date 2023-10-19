@@ -17,14 +17,14 @@ const data = await wpquery({
                 name
                 proyects {
                     nodes {
-                        slug
+                        uri
                         title
                         excerpt
                         screenshots {
                             images {
                                 ... on MediaItem {
                                     id
-                                    sourceUrl(size: MEDIUM)
+                                    sourceUrl(size: MEDIUM_LARGE)
                                 }
                             }
                         }
@@ -44,7 +44,7 @@ interface Categories {
 }
 
 interface Proyects {
-    slug: string;
+    uri: string;
     title: string;
     excerpt: string;
     screenshots: {
@@ -93,20 +93,20 @@ interface ImageGalery {
                                             proyect.screenshots.images
                                                 ? proyect.screenshots.images.map(
                                                       (image: ImageGalery) =>
-                                                          image.sourceUrl
+                                                          image.sourceUrl,
                                                   )
                                                 : Array(3).fill(
-                                                      "/images/default.png"
+                                                      "/images/default.png",
                                                   );
                                         return (
                                             <ProyectGalery
                                                 proyectName={proyect.title}
                                                 proyectDesc={proyect.excerpt}
-                                                proyectLink={proyect.slug}
+                                                proyectLink={proyect.uri}
                                                 images={images}
                                             />
                                         );
-                                    }
+                                    },
                                 )}
                             </div>
                         </>

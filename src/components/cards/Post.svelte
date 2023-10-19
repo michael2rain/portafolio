@@ -6,7 +6,7 @@
         postExcerpt: string;
         postSlug: string;
         postLectureTime: string;
-        postImage: string;
+        postUrlImage: string;
     }
 
     import { dateFormatDistance } from "../../utils/timeUtils";
@@ -17,7 +17,7 @@
     export let postExcerpt = "";
     export let postSlug = "";
     export let postLectureTime = "";
-    export let postImage = "";
+    export let postUrlImage = "";
 </script>
 
 <article
@@ -63,7 +63,9 @@
         class="w-full h-[70px] md:h-[120px] object-cover row-span-4 rounded-lg ring-2 ring-pink-900/25 group-hover:brightness-110"
         width="120"
         height="120"
-        src={postImage ?? "/public/images/default.png"}
+        src={postUrlImage ?? "/images/default.png"}
         alt="Imagen destacada de ${postTitle}"
+        loading="lazy"
+        decoding="async"
     />
 </article>

@@ -4,7 +4,6 @@
         link: string;
         linkTitle: string;
         activeUrl: string;
-        isActive: boolean;
     }
 
     export let text = "";

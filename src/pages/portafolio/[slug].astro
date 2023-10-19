@@ -27,6 +27,11 @@ const data = await fetchProyects({
                         name
                     }
                 }
+                proyectFeatures {
+                    nodes {
+                        name
+                    }
+                }
                 proyectLinks {
                     figmaUrl
                     githubUrl
@@ -57,52 +62,77 @@ const { slug } = Astro.params;
 
 const proyect = data.find((proyect) => proyect.slug === slug);
 if (!proyect) return Astro.redirect("/404");
-
-const {
-    title,
-    content,
-    excerpt,
-    proyectCategories,
-    featuredImage,
-    proyectLinks,
-    screenshots,
-} = proyect;
 ---
 
 <Layout
-    title={title + " - Portafolio de Michael Barrera"}
-    pageTitle={title}
-    pageDescription={excerpt}
+    title={proyect.title + " - Portafolio de Michael Barrera"}
+    pageTitle={proyect.title}
+    pageDescription={proyect.excerpt}
 >
     <HeroProyect
-        heading={title}
-        description={excerpt}
-        proyectCategory={proyectCategories.nodes.map((name) => {
+        heading={proyect.title}
+        description={proyect.excerpt}
+        proyectCategory={proyect.proyectCategories.nodes.map((name) => {
             return name.name;
         })[0]}
-        proyectFeatureImg={featuredImage.node.mediaItemUrl}
-        proyectLink={proyectLinks.urlDelSitioWeb}
+        proyectFeatureImg={proyect.featuredImage.node.mediaItemUrl}
+        proyectLink={proyect.proyectLinks.urlDelSitioWeb}
     />
     <Content className="gap-10">
-        <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+        <section class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+            <h2 class="w-[30%] flex-1 text-3xl font-medium">Descripción</h2>
+            <article
+                class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full px-7 py-8 bg-pink rounded-xl"
+            >
+                <Fragment set:html={proyect.content} />
+            </article>
+        </section>
+        <section class="flex flex-col md:flex-row gap-8 md:gap-16 p-6 py-8">
             <h2 class="w-[30%] flex-1 text-3xl font-medium">Características</h2>
             <div
-                class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full"
+                class="w-full h-fit md:w-[70%] columns-2 gap-12 px-7 pb-5 pt-4 bg-pink rounded-xl"
             >
-                <Fragment set:html={content} />
+                <h3 class="text-2xl text-pink-100 font-bold py-4 mb-1">
+                    Features:
+                </h3>
+                <ul class="p-0 mb-0 list-none list divide-y divide-pink-200/10">
+                    {
+                        proyect.proyectFeatures.nodes.map((tool) => {
+                            return (
+                                <li class="text-pink-100/90 text-lg font-medium m-0 py-4 pl-0">
+                                    {tool.name}
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
+                <h3 class="text-2xl text-pink-100 font-bold py-4 mb-1">
+                    Stack:
+                </h3>
+                <ul class="p-0 mb-0 list-none list divide-y divide-pink-200/10">
+                    {
+                        proyect.proyectUsedTools.nodes.map((tool) => {
+                            return (
+                                <li class="text-pink-100/90 text-lg font-medium m-0 py-4 pl-0">
+                                    {tool.name}
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
             </div>
-        </div>
+        </section>
         {
-            screenshots.images ? (
-                <div class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
+            proyect.screenshots.images ? (
+                <section class="flex flex-col md:flex-row gap-8 md:gap-16 p-6">
                     <h2 class="w-[30%] flex-1 text-3xl font-medium">
                         Screenshots
                     </h2>
                     <GaleryLigthbox
                         client:visible
-                        images={screenshots.images}
+                        images={proyect.screenshots.images}
                     />
-                </div>
+                </section>
             ) : null
         }
     </Content>

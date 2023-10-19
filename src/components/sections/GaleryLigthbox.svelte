@@ -54,7 +54,7 @@
 <ul class="w-[70%] grid grid-cols-2 gap-x-7 gap-y-10">
     {#each images as image, index}
         <li
-            class="group relative items-end bg-pink-200/5 rounded-xl h-fit w-full max-h-[235px] pr-4 pl-3 pt-3 overflow-hidden"
+            class="group relative items-end bg-pink rounded-xl h-fit w-full max-h-[235px] pr-4 pl-3 pt-3 overflow-hidden"
         >
             <img
                 class="md:block md:w-[320px] lg:w-[350px] xl:w-full h-full object-cover bottom-0 transition-all"
@@ -62,6 +62,8 @@
                 height="auto"
                 src={image.sourceUrl}
                 alt={image.altText}
+                loading="lazy"
+                decoding="async"
             />
             <button
                 on:click={() => openLightBox(index)}
@@ -95,6 +97,8 @@
                             height="auto"
                             src={image.mediaItemUrl}
                             alt={image.altText}
+                            loading="lazy"
+                            decoding="async"
                         />
                     </li>
                 {/each}

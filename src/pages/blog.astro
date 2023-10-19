@@ -11,10 +11,10 @@ import PostCard from "../components/cards/Post.svelte";
 
 const data = await wpquery({
     query: `
-    query data {
+    query blogPage {
         posts {
             nodes {
-                slug
+                uri
                 date
                 title
                 excerpt
@@ -56,9 +56,11 @@ const data = await wpquery({
                                 postDate={post.date}
                                 postTitle={post.title}
                                 postExcerpt={post.excerpt}
-                                postSlug={post.slug}
+                                postSlug={post.uri}
                                 postLectureTime={readingTime(post.content)}
-                                postImage={post.featuredImage?.node.sourceUrl}
+                                postUrlImage={
+                                    post.featuredImage?.node.sourceUrl
+                                }
                             />
                         );
                     })
