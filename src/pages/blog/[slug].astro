@@ -66,6 +66,8 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
                 class="w-full h-[850px] object-cover inset-0"
                 src={featuredImage?.node.sourceUrl}
                 alt=""
+                loading="lazy"
+                decoding="async"
             />
         </section>
 
@@ -81,7 +83,7 @@ const { title, content, categories, date, excerpt, featuredImage } = post;
                             })
                         }
                     </p>
-                    /
+                     /
                     <time
                         datetime={date}
                         class="text-lg md:text-xl font-medium text-pink-200/70"

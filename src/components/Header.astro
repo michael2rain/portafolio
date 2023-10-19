@@ -1,8 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import BreadCrumb from "./nav/BreadCrumb.svelte";
 import NavMenu from "./nav/NavMenu.svelte";
-import Logo from "./images/logo.png";
 
 interface Props {
     currentPath: string;
@@ -19,11 +17,14 @@ const { currentPath, pageName } = Astro.props;
             class="max-w-[80%] md:max-w-[50%] flex flex-row items-center gap-3"
         >
             <a class="flex-none" title="Ir al inicio" href="/">
-                <Image
+                <img
                     alt="Logo"
                     class="w-[40px] inline transition-all hover:scale-110 hover:brightness-110 active:brightness-100"
                     width={55}
-                    src={Logo}
+                    height={55}
+                    src="/images/logotipo.png"
+                    loading="lazy"
+                    decoding="async"
                 />
             </a>
             <BreadCrumb
