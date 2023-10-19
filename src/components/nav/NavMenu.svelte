@@ -22,7 +22,11 @@
     }
 </script>
 
-<button on:click={onClick} class="block lg:hidden p-5 focus:bg-pink-100/5">
+<button
+    on:click={onClick}
+    class="block lg:hidden p-5 focus:bg-pink-100/5"
+    aria-label="Abrir menú para teléfonos"
+>
     {#if !isOpen}
         <HamburguerIcons width={16} className="fill-pink-100" />
     {:else}

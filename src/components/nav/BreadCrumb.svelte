@@ -17,13 +17,16 @@
 <ol
     class="{className} flex flex-row items-center gap-3 text-pink-200 font-medium text-sm md:text-base"
 >
-    {" / "}
     {#if pathParts.length <= 1}
-        <li>{currenPage}</li>
+        <li class="before:content-['/'] before:mr-3">
+            {currenPage}
+        </li>
     {:else}
         {#each pathParts as part, index (part)}
             {#if index < pathParts.length - 1}
-                <li class="w-fit flex-none line-clamp-1">
+                <li
+                    class="w-fit flex-none line-clamp-1 before:content-['/'] before:mr-3"
+                >
                     <a
                         class="capitalize hover:underline hover:text-pink-100"
                         href={pathname.substring(
@@ -34,8 +37,9 @@
                         {part}
                     </a>
                 </li>
-                {" / "}
-                <li class="flex-auto text-pink-100/80 line-clamp-1">
+                <li
+                    class="flex-auto text-pink-100/80 line-clamp-1 before:content-['/'] before:mr-3"
+                >
                     {currenPage}
                 </li>
             {/if}
