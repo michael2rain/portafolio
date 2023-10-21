@@ -16,14 +16,9 @@ const {
     className = "",
 } = Astro.props;
 
-import "@fontsource/ibm-plex-sans/300.css";
-import "@fontsource/ibm-plex-sans/400.css";
-import "@fontsource/ibm-plex-sans/500.css";
-import "@fontsource/ibm-plex-sans/600.css";
-import "@fontsource/dela-gothic-one/400.css";
-
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import "../assets/global.css";
 
 const urlPathname = Astro.url.pathname;
 ---

@@ -6,7 +6,9 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), svelte()],
+  integrations: [tailwind({
+    applyBaseStyles: false,
+  }), svelte()],
   build: {
     site: 'https://michaelbarrera.dev/',
     assets: '_assets'
