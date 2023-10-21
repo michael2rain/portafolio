@@ -91,12 +91,15 @@ interface ImageGalery {
                                         const images =
                                             proyect.screenshots &&
                                             proyect.screenshots.images
-                                                ? proyect.screenshots.images.map(
-                                                      (image: ImageGalery) =>
-                                                          image.sourceUrl,
-                                                  )
+                                                ? proyect.screenshots.images
+                                                      .map(
+                                                          (
+                                                              image: ImageGalery
+                                                          ) => image.sourceUrl
+                                                      )
+                                                      .slice(0, 3)
                                                 : Array(3).fill(
-                                                      "/images/default.png",
+                                                      "/images/default.png"
                                                   );
                                         return (
                                             <ProyectGalery
@@ -106,7 +109,7 @@ interface ImageGalery {
                                                 images={images}
                                             />
                                         );
-                                    },
+                                    }
                                 )}
                             </div>
                         </>
