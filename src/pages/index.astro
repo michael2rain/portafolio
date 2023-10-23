@@ -7,7 +7,7 @@ import { readingTime } from "../utils/timeUtils";
 import Layout from "../layouts/BaseLayout.astro";
 import Content from "../layouts/containers/BaseContent.astro";
 import Hero from "../components/sections/HeroIndex.astro";
-import ProyectCard from "../components/cards/Proyect.astro";
+import ProjectCard from "../components/cards/Project.astro";
 import PostCard from "../components/cards/Post.svelte";
 
 const data = await wpquery({
@@ -32,7 +32,7 @@ const data = await wpquery({
                 }
             }
         }
-        proyects(first: 2) {
+        projects(first: 2) {
             nodes {
                 uri
                 title
@@ -43,7 +43,7 @@ const data = await wpquery({
                         sourceUrl(size: MEDIUM_LARGE)
                     }
                 }
-                proyectCategories {
+                projectCategories {
                     nodes {
                         name
                     }
@@ -58,7 +58,7 @@ const data = await wpquery({
 <Layout
     title="Información - Michael Barrera Developer"
     pageTitle="Información"
-    pageDescription="Información de Michael Barrera; Acerca de, proyectos y últimos post en el blog."
+    pageDescription="Información de Michael Barrera; Acerca de, projectos y últimos post en el blog."
 >
     <Hero
         heading="Info"
@@ -84,19 +84,19 @@ const data = await wpquery({
                 >
             </div>
             {
-                data.proyects.nodes.map((proyect: any) => {
+                data.projects.nodes.map((project: any) => {
                     return (
-                        <ProyectCard
+                        <ProjectCard
                             className="basis-auto lg:basis-[calc(50%_-_14px)]"
-                            proyectSlug={proyect.uri}
-                            proyectCat={
-                                proyect.proyectCategories.nodes.map((name) => {
+                            projectSlug={project.uri}
+                            projectCat={
+                                project.projectCategories.nodes.map((name) => {
                                     return name.name;
                                 })[0]
                             }
-                            proyectName={proyect.title}
-                            proyectDesc={proyect.excerpt}
-                            proyectImage={proyect.featuredImage.node.sourceUrl}
+                            projectName={project.title}
+                            projectDesc={project.excerpt}
+                            projectImage={project.featuredImage.node.sourceUrl}
                         />
                     );
                 })

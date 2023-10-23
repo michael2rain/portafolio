@@ -51,7 +51,7 @@ export async function fetchPosts({ query, variables = {} }: WPGraphQLParams) {
 };
 
 
-export async function fetchProyects({ query, variables = {} }: WPGraphQLParams) {
+export async function fetchProjects({ query, variables = {} }: WPGraphQLParams) {
     const res = await fetch(`${import.meta.env.WP_URL}`, {
         method: 'post',
         headers: {
@@ -70,7 +70,7 @@ export async function fetchProyects({ query, variables = {} }: WPGraphQLParams) 
 
     const { data } = await res.json();
 
-    return data.proyects.nodes.map((proyect) => {
-        return proyect;
+    return data.projects.nodes.map((project) => {
+        return project;
     });
 };

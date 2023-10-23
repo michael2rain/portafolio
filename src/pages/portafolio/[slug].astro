@@ -1,17 +1,17 @@
 ---
 export const prerender = false;
 
-import { fetchProyects } from "../../functions/wordpress";
+import { fetchProjects } from "../../functions/wordpress";
 
 import Layout from "../../layouts/BaseLayout.astro";
 import Content from "../../layouts/containers/BaseContent.astro";
-import HeroProyect from "../../components/sections/HeroProyect.astro";
+import HeroProject from "../../components/sections/HeroProject.astro";
 import GaleryLigthbox from "../../components/sections/GaleryLigthbox.svelte";
 
-const data = await fetchProyects({
+const data = await fetchProjects({
     query: `
-    query proyectPage {
-        proyects {
+    query projectPage {
+        projects {
             nodes {
                 slug
                 title
@@ -22,22 +22,22 @@ const data = await fetchProyects({
                         sourceUrl(size: LARGE)
                     }
                 }
-                proyectCategories {
+                projectCategories {
                     nodes {
                         name
                     }
                 }
-                proyectFeatures {
+                projectFeatures {
                     nodes {
                         name
                     }
                 }
-                proyectLinks {
+                projectLinks {
                     figmaUrl
                     githubUrl
                     urlDelSitioWeb
                 }
-                proyectUsedTools(where: {orderby: TERM_ORDER}) {
+                projectUsedTools(where: {orderby: TERM_ORDER}) {
                     nodes {
                         name
                     }
@@ -60,31 +60,33 @@ const data = await fetchProyects({
 
 const { slug } = Astro.params;
 
-const proyect = data.find((proyect) => proyect.slug === slug);
-if (!proyect) return Astro.redirect("/404");
+const project = data.find((project) => project.slug === slug);
+if (!project) return Astro.redirect("/404");
 ---
 
 <Layout
-    title={proyect.title + " - Portafolio de Michael Barrera"}
-    pageTitle={proyect.title}
-    pageDescription={proyect.excerpt}
+    title={project.title + " - Portafolio de Michael Barrera"}
+    pageTitle={project.title}
+    pageDescription={project.excerpt}
 >
-    <HeroProyect
-        heading={proyect.title}
-        description={proyect.excerpt}
-        proyectCategory={proyect.proyectCategories.nodes.map((name) => {
+    <HeroProject
+        heading={project.title}
+        description={project.excerpt}
+        projectCategory={project.projectCategories.nodes.map((name) => {
             return name.name;
         })[0]}
-        proyectFeatureImg={proyect.featuredImage.node.sourceUrl}
-        proyectLink={proyect.proyectLinks.urlDelSitioWeb}
+        projectFeatureImg={project.featuredImage.node.sourceUrl}
+        projectLink={project.projectLinks.urlDelSitioWeb}
     />
     <Content className="gap-10">
-        <section class="flex flex-col md:flex-row gap-8 md:gap-16 p-6 lg:px-16">
+        <section
+            class="flex flex-col md:flex-row gap-8 md:gap-16 p-3 md:p-6 lg:px-16"
+        >
             <h2 class="w-[30%] flex-1 text-3xl font-medium">Descripción</h2>
             <article
                 class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full px-7 py-8 bg-pink rounded-xl"
             >
-                <Fragment set:html={proyect.content} />
+                <Fragment set:html={project.content} />
             </article>
         </section>
         <section
@@ -99,7 +101,7 @@ if (!proyect) return Astro.redirect("/404");
                 </h3>
                 <ul class="p-0 mb-0 list-none list divide-y divide-pink-200/10">
                     {
-                        proyect.proyectFeatures.nodes.map((tool) => {
+                        project.projectFeatures.nodes.map((tool) => {
                             return (
                                 <li class="text-pink-100/90 text-lg font-medium m-0 py-4 pl-0">
                                     {tool.name}
@@ -113,7 +115,7 @@ if (!proyect) return Astro.redirect("/404");
                 </h3>
                 <ul class="p-0 mb-0 list-none list divide-y divide-pink-200/10">
                     {
-                        proyect.proyectUsedTools.nodes.map((tool) => {
+                        project.projectUsedTools.nodes.map((tool) => {
                             return (
                                 <li class="text-pink-100/90 text-lg font-medium m-0 py-4 pl-0">
                                     {tool.name}
@@ -125,14 +127,14 @@ if (!proyect) return Astro.redirect("/404");
             </div>
         </section>
         {
-            proyect.screenshots.images ? (
+            project.screenshots.images ? (
                 <section class="flex flex-col md:flex-row gap-8 md:gap-16 p-6 lg:px-16">
                     <h2 class="w-[30%] flex-1 text-3xl font-medium">
                         Screenshots
                     </h2>
                     <GaleryLigthbox
                         client:visible
-                        images={proyect.screenshots.images}
+                        images={project.screenshots.images}
                     />
                 </section>
             ) : null

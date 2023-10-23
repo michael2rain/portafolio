@@ -3,12 +3,12 @@ import PillLink from "../buttons/PillLink.astro";
 
 interface Props {
     className?: string;
-    proyectName: string;
-    proyectDesc: string;
-    proyectLink: string;
+    projectName: string;
+    projectDesc: string;
+    projectLink: string;
     images: string[];
 }
-const { proyectName, proyectDesc, className, proyectLink, images } =
+const { projectName, projectDesc, className, projectLink, images } =
     Astro.props;
 ---
 
@@ -19,16 +19,16 @@ const { proyectName, proyectDesc, className, proyectLink, images } =
         class="w-full lg:w-[40%] flex flex-col gap-3 text-pink-100 group-hover:text-pink-50 p-6 md:p-0 lg:p-0"
     >
         <h3 class="text-xl md:text-2xl font-medium line-clamp-2">
-            {proyectName}
+            {projectName}
         </h3>
         <div class="text-base md:text-lg line-clamp-3 mb-3">
-            <Fragment set:html={proyectDesc} />
+            <Fragment set:html={projectDesc} />
         </div>
         <PillLink
-            link={proyectLink}
+            link={projectLink}
             className="w-fit hover:underline hover:decoration-dashed after:content-[''] after:absolute after:inset-0 after:z-10"
             text="Leer más"
-            linkTitle={"Ver más de " + proyectName}
+            linkTitle={"Ver más de " + projectName}
         />
     </div>
     <ul

@@ -6,16 +6,16 @@ import { wpquery } from "../functions/wordpress";
 import Layout from "../layouts/BaseLayout.astro";
 import Content from "../layouts/containers/BaseContent.astro";
 import HeroPortafolio from "../components/sections/HeroPortafolio.astro";
-import ProyectGalery from "../components/cards/ProyectGalery.astro";
+import ProjectGalery from "../components/cards/ProjectGalery.astro";
 import PluginIcon from "../components/icons/Plugin.astro";
 
 const data = await wpquery({
     query: `
     query portafolioPage {
-        proyectCategories(where: {hideEmpty: true}) {
+        projectCategories(where: {hideEmpty: true}) {
             nodes {
                 name
-                proyects {
+                projects {
                     nodes {
                         uri
                         title
@@ -38,12 +38,12 @@ const data = await wpquery({
 
 interface Categories {
     name: string;
-    proyects: {
+    projects: {
         nodes: [];
     };
 }
 
-interface Proyects {
+interface Projects {
     uri: string;
     title: string;
     excerpt: string;
@@ -70,7 +70,7 @@ interface ImageGalery {
     <Content>
         <section class="flex flex-col gap-8 md:px-6 lg:px-12 xl:px-0">
             {
-                data.proyectCategories.nodes.map((categories: Categories) => {
+                data.projectCategories.nodes.map((categories: Categories) => {
                     return (
                         <>
                             <div class="w-full md:w-fit flex flex-row items-center gap-4">
@@ -83,15 +83,15 @@ interface ImageGalery {
                                 </h2>
                             </div>
                             <div class="flex flex-col gap-6 mb-3 md:mb-5 lg:mb-7 ">
-                                {categories.proyects.nodes.map(
-                                    (proyect: Proyects) => {
-                                        if (!proyect) {
+                                {categories.projects.nodes.map(
+                                    (project: Projects) => {
+                                        if (!project) {
                                             return [];
                                         }
                                         const images =
-                                            proyect.screenshots &&
-                                            proyect.screenshots.images
-                                                ? proyect.screenshots.images
+                                            project.screenshots &&
+                                            project.screenshots.images
+                                                ? project.screenshots.images
                                                       .map(
                                                           (
                                                               image: ImageGalery
@@ -102,10 +102,10 @@ interface ImageGalery {
                                                       "/images/default.png"
                                                   );
                                         return (
-                                            <ProyectGalery
-                                                proyectName={proyect.title}
-                                                proyectDesc={proyect.excerpt}
-                                                proyectLink={proyect.uri}
+                                            <ProjectGalery
+                                                projectName={project.title}
+                                                projectDesc={project.excerpt}
+                                                projectLink={project.uri}
                                                 images={images}
                                             />
                                         );

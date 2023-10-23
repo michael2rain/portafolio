@@ -1,18 +1,18 @@
 ---
 interface Props {
-    proyectSlug: string;
-    proyectCat: string;
-    proyectName: string;
-    proyectDesc: string;
-    proyectImage: string;
+    projectSlug: string;
+    projectCat: string;
+    projectName: string;
+    projectDesc: string;
+    projectImage: string;
     className: string;
 }
 const {
-    proyectSlug,
-    proyectCat,
-    proyectName,
-    proyectDesc,
-    proyectImage,
+    projectSlug,
+    projectCat,
+    projectName,
+    projectDesc,
+    projectImage,
     className,
 } = Astro.props;
 
@@ -32,29 +32,29 @@ import PillLink from "../buttons/PillLink.astro";
                 className="w-auto scale-90 md:scale-100 fill-pink-400/75 group-hover:fill-pink-400"
             />
             <em class="text-xs md:text-sm text-pink-200 not-italic"
-                >{proyectCat}</em
+                >{projectCat}</em
             >
         </div>
         <h3 class="text-xl md:text-2xl font-medium line-clamp-2">
-            {proyectName}
+            {projectName}
         </h3>
         <div class="text-base md:text-lg line-clamp-3 mb-2">
-            <Fragment set:html={proyectDesc} />
+            <Fragment set:html={projectDesc} />
         </div>
 
         <PillLink
             className="after:content-[''] after:absolute after:inset-0 after:z-10"
-            text="Ver proyecto"
-            link={proyectSlug}
-            linkTitle="Ver proyecto"
+            text="Ver projecto"
+            link={projectSlug}
+            linkTitle="Ver projecto"
         />
     </div>
     <img
         class="hidden md:block md:w-[320px] lg:w-[350px] xl:w-[360px] max-h-[280px] object-cover absolute -right-[20%] group-hover:-right-[13%] lg:-right-[50%] lg:group-hover:-right-[47%] xl:-right-[45%] xl:group-hover:-right-[43%] bottom-0 -rotate-3 transition-all"
         width="213"
         height="288"
-        src={proyectImage}
-        alt=`Imagen destacada del proyecto ${proyectName}`
+        src={projectImage}
+        alt=`Imagen destacada del projecto ${projectName}`
         loading="lazy"
         decoding="async"
     />
