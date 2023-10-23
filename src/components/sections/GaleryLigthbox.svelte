@@ -51,7 +51,7 @@
     });
 </script>
 
-<ul class="w-[70%] grid grid-cols-2 gap-x-7 gap-y-10">
+<ul class="md:w-[70%] grid grid-cols-2 gap-x-7 gap-y-10">
     {#each images as image, index}
         <li
             class="group relative items-end bg-pink rounded-xl h-fit w-full max-h-[235px] pr-4 pl-3 pt-3 overflow-hidden"

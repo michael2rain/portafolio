@@ -80,9 +80,13 @@ if (!project) return Astro.redirect("/404");
     />
     <Content className="gap-10">
         <section
-            class="flex flex-col md:flex-row gap-8 md:gap-16 p-3 md:p-6 lg:px-16"
+            class="flex flex-col md:flex-row gap-8 md:gap-16 p-0 md:p-6 lg:px-16"
         >
-            <h2 class="w-[30%] flex-1 text-3xl font-medium">Descripción</h2>
+            <h2
+                class="w-full md:w-[30%] flex-1 text-3xl font-medium px-3 pt-3 md:p-0"
+            >
+                Descripción
+            </h2>
             <article
                 class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full px-7 py-8 bg-pink rounded-xl"
             >
@@ -90,11 +94,15 @@ if (!project) return Astro.redirect("/404");
             </article>
         </section>
         <section
-            class="flex flex-col md:flex-row gap-8 md:gap-16 p-6 py-8 lg:px-16"
+            class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 md:py-8 lg:px-16"
         >
-            <h2 class="w-[30%] flex-1 text-3xl font-medium">Características</h2>
+            <h2
+                class="w-full md:w-[30%] flex-1 text-3xl font-medium px-3 pt-3 md:p-0"
+            >
+                Características
+            </h2>
             <div
-                class="w-full h-fit md:w-[70%] columns-2 gap-12 px-7 pb-5 pt-4 bg-pink rounded-xl"
+                class="w-full h-fit md:w-[70%] md:columns-2 gap-12 px-7 pb-5 pt-4 bg-pink rounded-xl [&>*:nth-child(3)]:mt-7 [&>ul]:px-1"
             >
                 <h3 class="text-2xl text-pink-100 font-bold py-4 mb-1">
                     Features:
@@ -128,8 +136,8 @@ if (!project) return Astro.redirect("/404");
         </section>
         {
             project.screenshots.images ? (
-                <section class="flex flex-col md:flex-row gap-8 md:gap-16 p-6 lg:px-16">
-                    <h2 class="w-[30%] flex-1 text-3xl font-medium">
+                <section class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 lg:px-16">
+                    <h2 class="md:w-[30%] flex-1 text-3xl font-medium px-3 md:px-0">
                         Screenshots
                     </h2>
                     <GaleryLigthbox
