@@ -83,7 +83,7 @@ if (!project) return Astro.redirect("/404");
             class="flex flex-col md:flex-row gap-8 md:gap-16 p-0 md:p-6 lg:px-16"
         >
             <h2
-                class="w-full md:w-[30%] flex-1 text-3xl font-medium px-3 pt-3 md:p-0"
+                class="w-full md:w-[30%] flex-1 text-3xl font-bold px-3 pt-3 md:p-0"
             >
                 Descripción
             </h2>
@@ -97,7 +97,7 @@ if (!project) return Astro.redirect("/404");
             class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 md:py-8 lg:px-16"
         >
             <h2
-                class="w-full md:w-[30%] flex-1 text-3xl font-medium px-3 pt-3 md:p-0"
+                class="w-full md:w-[30%] flex-1 text-3xl font-bold px-3 pt-3 md:p-0"
             >
                 Características
             </h2>
@@ -136,8 +136,8 @@ if (!project) return Astro.redirect("/404");
         </section>
         {
             project.screenshots.images ? (
-                <section class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 lg:px-16">
-                    <h2 class="md:w-[30%] flex-1 text-3xl font-medium px-3 md:px-0">
+                <section class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 lg:px-16 mb-6">
+                    <h2 class="md:w-[30%] flex-1 text-3xl font-bold px-3 md:px-0">
                         Screenshots
                     </h2>
                     <GaleryLigthbox
