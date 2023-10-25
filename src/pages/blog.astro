@@ -36,11 +36,14 @@ const data = await wpquery({
 });
 ---
 
-<BaseLayout title="Blog" pageDescription="Empty" pageTitle="Blog">
-    <HeroBlog heading="Blog" description="" />
+<BaseLayout title="Blog" pageDescription="Empty" pageTitle="Blog personal">
+    <HeroBlog
+        heading="Blog personal"
+        description="Un recetario para cualquiera que busque mejorar su sitio web."
+    />
     <BaseContent>
         <section
-            class="flex flex-row flex-wrap gap-5 md:gap-7 items-center md:p-6 lg:px-12 xl:p-0"
+            class="flex flex-row flex-wrap gap-5 md:gap-7 items-center md:p-6 md:px-12 lg:px-12 xl:p-0"
         >
             <div class="w-full flex flex-col gap-5 md:gap-7">
                 {

@@ -51,13 +51,15 @@
     });
 </script>
 
-<ul class="md:w-[70%] grid grid-cols-2 gap-x-7 gap-y-10">
+<ul
+    class="w-full flex flex-row gap-x-6 md:grid md:grid-cols-2 md:gap-x-7 md:gap-y-8 overflow-x-auto scroll-pl-5 snap-mandatory snap-x px-5 md:px-0"
+>
     {#each images as image, index}
         <li
-            class="group relative items-end bg-pink rounded-xl h-fit w-full max-h-[235px] pr-4 pl-3 pt-3 overflow-hidden"
+            class="group relative items-end bg-pink rounded-xl min-w-[300px] md:min-w-full h-fit md:max-h-[235px] pr-4 pl-3 pt-3 overflow-hidden snap-start"
         >
             <img
-                class="md:block md:w-[320px] lg:w-[350px] xl:w-full h-full object-cover bottom-0 transition-all"
+                class="md:block min-w-full md:w-[320px] lg:w-[350px] xl:w-full h-full object-cover bottom-0 transition-all"
                 width="213"
                 height="auto"
                 src={image.sourceUrl}

@@ -4,7 +4,6 @@ export const prerender = false;
 import { fetchProjects } from "../../functions/wordpress";
 
 import Layout from "../../layouts/BaseLayout.astro";
-import Content from "../../layouts/containers/BaseContent.astro";
 import HeroProject from "../../components/sections/HeroProject.astro";
 import GaleryLigthbox from "../../components/sections/GaleryLigthbox.svelte";
 
@@ -78,54 +77,54 @@ if (!project) return Astro.redirect("/404");
         projectFeatureImg={project.featuredImage.node.sourceUrl}
         projectLink={project.projectLinks.urlDelSitioWeb}
     />
-    <Content className="gap-10">
-        <section
-            class="flex flex-col md:flex-row gap-8 md:gap-16 p-0 md:p-6 lg:px-16"
-        >
+    <article
+        class="flex flex-col gap-8 md:gap-0 lg:gap-8 max-w-screen-lg mx-auto my-7 md:my-12 lg:my-20 md:px-12 py-0"
+    >
+        <section class="flex flex-col lg:flex-row gap-6 lg:gap-16 px-5 md:p-6">
             <h2
-                class="w-full md:w-[30%] flex-1 text-3xl font-bold px-3 pt-3 md:p-0"
+                class="flex-none w-full md:w-[25%] text-2xl lg:text-3xl font-bold px-1 pt-3 md:p-0"
             >
                 Descripción
             </h2>
             <article
-                class="w-full md:w-[70%] prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full px-7 py-8 bg-pink rounded-xl"
+                class="flex-1 w-full lg:w-[75%] prose lg:prose-lg prose-headings:font-semibold prose-headings:text-pink-100 prose-p:text-pink-100/90 [&>figure>div>iframe]:w-full p-6 bg-pink rounded-xl"
             >
                 <Fragment set:html={project.content} />
             </article>
         </section>
         <section
-            class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 md:py-8 lg:px-16"
+            class="flex flex-col lg:flex-row gap-6 lg:gap-16 md:p-6 md:py-8 px-5"
         >
             <h2
-                class="w-full md:w-[30%] flex-1 text-3xl font-bold px-3 pt-3 md:p-0"
+                class="flex-none w-full md:w-[25%] text-2xl lg:text-3xl font-bold px-1 pt-3 md:p-0"
             >
                 Características
             </h2>
             <div
-                class="w-full h-fit md:w-[70%] md:columns-2 gap-12 px-7 pb-5 pt-4 bg-pink rounded-xl [&>*:nth-child(3)]:mt-7 [&>ul]:px-1"
+                class="flex-1 w-full h-fit lg:w-[75%] md:columns-2 gap-12 px-7 pb-5 pt-4 bg-pink rounded-xl [&>*:nth-child(3)]:mt-3 [&>ul]:px-1"
             >
-                <h3 class="text-2xl text-pink-100 font-bold py-4 mb-1">
+                <h3 class="text-xl lg:text-2xl text-pink-100 font-bold py-4">
                     Features:
                 </h3>
                 <ul class="p-0 mb-0 list-none list divide-y divide-pink-200/10">
                     {
                         project.projectFeatures.nodes.map((tool) => {
                             return (
-                                <li class="text-pink-100/90 text-lg font-medium m-0 py-4 pl-0">
+                                <li class="text-pink-100/90 lg:text-lg font-medium m-0 py-4 pl-0">
                                     {tool.name}
                                 </li>
                             );
                         })
                     }
                 </ul>
-                <h3 class="text-2xl text-pink-100 font-bold py-4 mb-1">
+                <h3 class="text-xl lg:text-2xl text-pink-100 font-bold py-4">
                     Stack:
                 </h3>
                 <ul class="p-0 mb-0 list-none list divide-y divide-pink-200/10">
                     {
                         project.projectUsedTools.nodes.map((tool) => {
                             return (
-                                <li class="text-pink-100/90 text-lg font-medium m-0 py-4 pl-0">
+                                <li class="text-pink-100/90 lg:text-lg font-medium m-0 py-4 pl-0">
                                     {tool.name}
                                 </li>
                             );
@@ -136,16 +135,18 @@ if (!project) return Astro.redirect("/404");
         </section>
         {
             project.screenshots.images ? (
-                <section class="flex flex-col md:flex-row gap-8 md:gap-16 md:p-6 lg:px-16 mb-6">
-                    <h2 class="md:w-[30%] flex-1 text-3xl font-bold px-3 md:px-0">
+                <section class="flex flex-col lg:flex-row gap-6 lg:gap-16 md:p-6  mb-6">
+                    <h2 class="flex-none w-full md:w-[25%] text-2xl lg:text-3xl font-bold px-5 md:px-0">
                         Screenshots
                     </h2>
-                    <GaleryLigthbox
-                        client:visible
-                        images={project.screenshots.images}
-                    />
+                    <main class="flex-1 w-full h-fit lg:w-[75%]">
+                        <GaleryLigthbox
+                            client:visible
+                            images={project.screenshots.images}
+                        />
+                    </main>
                 </section>
             ) : null
         }
-    </Content>
+    </article>
 </Layout>

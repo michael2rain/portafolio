@@ -37,7 +37,7 @@
     class="{isMobile} {className} absolute lg:relative lg:visible lg:top-0 right-5 lg:right-0 transition-all ease-in duration-100 lg:opacity-100 lg:scale-100 z-10"
 >
     <ul
-        class="w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
+        class="w-[200px] lg:w-full overflow-hidden flex flex-col lg:flex-row lg:justify-end lg:p-0 bg-pink border lg:border-none border-pink-200/10 lg:bg-pink rounded-xl lg:rounded-none shadow-xl"
     >
         <NavLink
             text="Inicio"
